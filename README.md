@@ -23,7 +23,7 @@ $ mkdir .class
 
 **MAJOR IMPORTANCE**
 
-> Create separate branch when working with backend code and request pull request **DO NOT MERGE DIRECTLY INTO MASTER**
+> Create a separate branch when working with backend code and request a pull request **DO NOT MERGE DIRECTLY INTO MASTER**
 
 > Pull constantly to get newest changes so we dont go through the pain of MERGE CONFLICTS
 
