@@ -16,9 +16,20 @@
   -fx-cursor: disappear;
 }
 
-.tile-image {
+.tile-image-p1 {
   /* image should be dynamic */
-  -fx-background-image: url('../resources/avatars/Ken.jpg');
+  -fx-background-image: url('../resources/avatars/Chun-Li.jpg');
+  /* image should be dynamic */
+  -fx-background-repeat: no-repeat;
+  -fx-background-size: cover;
+  -fx-background-position: center;
+  -fx-border-color: black;
+  -fx-border-width: 1.5;
+}
+
+.tile-image-p2 {
+  /* image should be dynamic */
+  -fx-background-image: url('../resources/avatars/Ryu.jpg');
   /* image should be dynamic */
   -fx-background-repeat: no-repeat;
   -fx-background-size: cover;
