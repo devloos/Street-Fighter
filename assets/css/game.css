@@ -1,15 +1,19 @@
 .tile {
-  -fx-background-color: rgba(189, 89, 89, 0.7);
+  -fx-background-color: rgba(165, 72, 72, 0.5);
   -fx-border-color: rgba(0, 0, 0, 0.4);
 }
 
 .tile-active {
-  -fx-cursor: hand;
+  -fx-cursor: open_hand;
 }
 
 .tile-active:hover {
   -fx-scale-x: 1.05;
   -fx-scale-y: 1.05;
+}
+
+.tile-active:pressed {
+  -fx-cursor: closed_hand;
 }
 
 .tile-taken {
