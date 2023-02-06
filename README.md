@@ -1,23 +1,27 @@
 ## Setup
 
-**Download Prerequisites**
+**Install Maven**
+https://maven.apache.org/install.html
 
-- JavaFx: https://gluonhq.com/products/javafx/
-- Scene Builder: https://gluonhq.com/products/scene-builder/
-
-**Repo Setup**
-
+**Clone Git Repository**
 ```
 $ git clone git@github.com:Puwya/Java-Tic-Tac-Toe.git
+```
+
+**Build Project with Maven**
+```
 $ cd Java-Tic-Tac-Toe
-$ mkdir lib
-$ mkdir .class
+$ mvn install
+```
+
+**Run Application with Maven**
+```
+$ mvn javafx:run -f pom.xml"
 ```
 
 **Important**
-
-- Using the JavaFx folder that you downloaded copy lib contents in the lib folder you created in `Repo Setup`
-- When creating an additional java file make sure its added to the Makefile
+- According to Maven convention the Java files are under `src/main/java` and the resources files (fxml, images, css etc) are `under src/main/resources`
+- All Java and resources files are in the following package: `edu.saddleback.tictactoe`
 - Please gitignore any unnecessary files that are added for specific operating system or for specific workspace setups
 - When utilizing Scene Builder lets ensure we place the file in the `views` folder
 
@@ -28,10 +32,3 @@ $ mkdir .class
 > Pull constantly to get newest changes so we dont go through the pain of MERGE CONFLICTS
 
 > If you are unsure on anything ask before committing! We are a team GO SCRUMMY BOYS
-
-**Run Application**
-
-```
-$ make all
-$ make run
-```

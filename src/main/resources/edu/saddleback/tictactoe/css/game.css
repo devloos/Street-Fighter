@@ -22,7 +22,7 @@
 
 .tile-image-p1 {
   /* image should be dynamic */
-  -fx-background-image: url('../resources/avatars/Chun-Li.jpg');
+  -fx-background-image: url('../images/avatars/Chun-Li.jpg');
   /* image should be dynamic */
   -fx-background-repeat: no-repeat;
   -fx-background-size: cover;
@@ -33,7 +33,7 @@
 
 .tile-image-p2 {
   /* image should be dynamic */
-  -fx-background-image: url('../resources/avatars/Ryu.jpg');
+  -fx-background-image: url('../images/avatars/Ryu.jpg');
   /* image should be dynamic */
   -fx-background-repeat: no-repeat;
   -fx-background-size: cover;
