@@ -19,16 +19,16 @@ public class GameService {
     label.setText(player.getName());
   }
 
-  public static void setPlayerTile(HBox box, Player player) {
+  public static void setPlayerTile(HBox tile, Player player) {
     ImageView imageTile = new ImageView(player.getAvatarPath().toString());
     imageTile.setFitWidth(100);
     imageTile.setFitHeight(100);
     imageTile.setEffect(new DropShadow());
 
-    box.getChildren().add(imageTile);
+    tile.getChildren().add(imageTile);
 
-    box.getStyleClass().removeAll("tile-active");
-    box.getStyleClass().add("tile-taken");
+    tile.getStyleClass().removeAll("tile-active");
+    tile.getStyleClass().add("tile-taken");
   }
 
   public static void resetTile(HBox tile) {

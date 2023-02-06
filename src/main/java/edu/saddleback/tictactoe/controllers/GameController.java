@@ -57,9 +57,9 @@ public class GameController {
       return;
     }
 
-    HBox box = (HBox) node;
-    Integer col = GridPane.getColumnIndex(box);
-    Integer row = GridPane.getRowIndex(box);
+    HBox tile = (HBox) node;
+    Integer col = GridPane.getColumnIndex(tile);
+    Integer row = GridPane.getRowIndex(tile);
 
     // not a valid index
     if (col == null && row == null) {
@@ -71,23 +71,23 @@ public class GameController {
       return;
     }
 
-    updateBoard(box, row, col);
+    updateBoard(tile, row, col);
 
     if (isWinner()) {
       overlay.setVisible(true);
     }
   }
 
-  private void updateBoard(HBox box, Integer row, Integer col) {
+  private void updateBoard(HBox tile, Integer row, Integer col) {
     switch (currentPlayer) {
       case X: {
-        GameService.setPlayerTile(box, p1);
+        GameService.setPlayerTile(tile, p1);
         board.get(row).set(col, currentPlayer);
         setCurrentPlayer(Token.Y);
         break;
       }
       case Y: {
-        GameService.setPlayerTile(box, p2);
+        GameService.setPlayerTile(tile, p2);
         board.get(row).set(col, currentPlayer);
         setCurrentPlayer(Token.X);
         break;
