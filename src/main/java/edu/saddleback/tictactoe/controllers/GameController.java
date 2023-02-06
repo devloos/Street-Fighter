@@ -7,14 +7,21 @@ import edu.saddleback.tictactoe.models.Player;
 import edu.saddleback.tictactoe.services.GameService;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 public class GameController {
+  // all fxml properties
+  public AnchorPane overlay = null;
+  public GridPane grid = null;
   public AnchorPane profile1 = null;
   public AnchorPane profile2 = null;
+  public Button restart_btn = null;
+  public Button quit_btn = null;
 
   // we should take in two players here
   public GameController() {
@@ -30,6 +37,16 @@ public class GameController {
   public void initialize() {
     GameService.setPlayerProfile(profile1, p1);
     GameService.setPlayerProfile(profile2, p2);
+
+    restart_btn.setOnAction(event -> {
+      overlay.setVisible(false);
+      resetGame();
+    });
+
+    quit_btn.setOnAction(event -> {
+      Stage stage = (Stage) overlay.getScene().getWindow();
+      stage.close();
+    });
   }
 
   @FXML
@@ -57,8 +74,7 @@ public class GameController {
     updateBoard(box, row, col);
 
     if (isWinner()) {
-      GridPane grid = (GridPane) box.getParent();
-      resetGame(grid);
+      overlay.setVisible(true);
     }
   }
 
@@ -92,7 +108,7 @@ public class GameController {
     return true;
   }
 
-  private void resetGame(GridPane grid) {
+  private void resetGame() {
 
     // clear state
     for (ArrayList<Token> row : board) {
