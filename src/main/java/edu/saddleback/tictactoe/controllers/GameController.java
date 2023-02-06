@@ -99,6 +99,8 @@ public class GameController {
   }
 
   private boolean isWinner() {
+    // For first deliverable, just checking if board is full
+    // Next derliverable will implement tic tac toe winning algorithm
     for (ArrayList<Token> row : board) {
       if (row.contains(null)) {
         return false;
