@@ -23,7 +23,7 @@ $ mvn install
 **Run Application with Maven**
 
 ```
-$ mvn javafx:run -f pom.xml"
+$ mvn javafx:run
 ```
 
 **Important**
