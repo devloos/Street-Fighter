@@ -13,20 +13,20 @@
       <children>
          <ImageView fitHeight="480.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="@../images/background-login.gif" />
+               <Image url="@../images/login-background.gif" />
             </image>
          </ImageView>
-         <Button layoutX="152.0" layoutY="279.0" mnemonicParsing="false" opacity="0.7" prefHeight="39.0" prefWidth="345.0" styleClass="btn" stylesheets="@../css/login.css" text="Multiplayer">
+         <Button layoutX="152.0" layoutY="324.0" mnemonicParsing="false" opacity="0.8" prefHeight="39.0" prefWidth="345.0" styleClass="btn" stylesheets="@../css/login.css" text="Multiplayer">
             <font>
                <Font name="Arial Black" size="18.0" />
             </font>
          </Button>
-         <Button layoutX="152.0" layoutY="223.0" mnemonicParsing="false" opacity="0.7" prefHeight="39.0" prefWidth="345.0" styleClass="btn" stylesheets="@../css/login.css" text="Single Player">
+         <Button layoutX="152.0" layoutY="267.0" mnemonicParsing="false" opacity="0.8" prefHeight="39.0" prefWidth="345.0" styleClass="btn" stylesheets="@../css/login.css" text="Single Player">
             <font>
                <Font name="Arial Black" size="18.0" />
             </font>
          </Button>
-         <Button layoutX="152.0" layoutY="336.0" mnemonicParsing="false" opacity="0.7" prefHeight="39.0" prefWidth="345.0" styleClass="btn" stylesheets="@../css/login.css" text="Online">
+         <Button layoutX="152.0" layoutY="380.0" mnemonicParsing="false" opacity="0.8" prefHeight="39.0" prefWidth="345.0" styleClass="btn" stylesheets="@../css/login.css" text="Online">
             <font>
                <Font name="Arial Black" size="18.0" />
             </font>
