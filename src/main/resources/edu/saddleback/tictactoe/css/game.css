@@ -20,24 +20,15 @@
   -fx-cursor: disappear;
 }
 
-.tile-image-p1 {
-  /* image should be dynamic */
-  -fx-background-image: url('../images/avatars/Chun-Li.jpg');
-  /* image should be dynamic */
-  -fx-background-repeat: no-repeat;
-  -fx-background-size: cover;
-  -fx-background-position: center;
-  -fx-border-color: black;
-  -fx-border-width: 1.5;
+.btn {
+  -fx-background-color: rgb(92, 38, 38);
+  -fx-text-fill: white;
+  -fx-cursor: hand;
+  -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 1), 10, 0.2, 0, 5);
+  -fx-translate-y: -2;
 }
 
-.tile-image-p2 {
-  /* image should be dynamic */
-  -fx-background-image: url('../images/avatars/Ryu.jpg');
-  /* image should be dynamic */
-  -fx-background-repeat: no-repeat;
-  -fx-background-size: cover;
-  -fx-background-position: center;
-  -fx-border-color: black;
-  -fx-border-width: 1.5;
+.btn:pressed {
+  -fx-effect: none;
+  -fx-translate-y: 2;
 }
