@@ -26,6 +26,7 @@ public class LoginController {
   public LoginController() {
     backgrounds = new ArrayList<Image>();
     // call readBackgrounds function and pass in path to data/backgrounds.db
+    // readBackgrounds("src/main/resources/edu/saddleback/tictactoe/data/backgrounds.db");
     // background_image.setImage(getRandomBackground());
   }
 
@@ -33,6 +34,20 @@ public class LoginController {
   public void initialize() {
     return_btn.setOnAction(event -> {
       overlay.setVisible(false);
+    });
+  }
+
+  @FXML
+  public void clickedSingleplayer() {
+    single_player_btn.setOnAction(event -> {
+      overlay.setVisible(true);
+    });
+  }
+
+  @FXML
+  public void clickedOnline() {
+    online_btn.setOnAction(event -> {
+      overlay.setVisible(true);
     });
   }
 
