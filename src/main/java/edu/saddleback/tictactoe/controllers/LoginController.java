@@ -2,16 +2,16 @@ package edu.saddleback.tictactoe.controllers;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
 
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.image.Image;
 
 public class LoginController {
@@ -25,13 +25,13 @@ public class LoginController {
 
   public LoginController() {
     backgrounds = new ArrayList<Image>();
-    // call readBackgrounds function and pass in path to data/backgrounds.db
-    // readBackgrounds("src/main/resources/edu/saddleback/tictactoe/data/backgrounds.db");
-    // background_image.setImage(getRandomBackground());
+    readBackgrounds("src/main/resources/edu/saddleback/tictactoe/data/backgrounds.db");
   }
 
   @FXML
   public void initialize() {
+    background_image.setImage(getRandomBackground());
+
     return_btn.setOnAction(event -> {
       overlay.setVisible(false);
     });
@@ -56,7 +56,9 @@ public class LoginController {
       Scanner input = new Scanner(new File(filePath));
       while (input.hasNextLine()) {
         String line = input.nextLine();
-        Image image = new Image(new File(line).toURI().toString());
+        InputStream stream = new FileInputStream(line);
+        Image image = new Image(stream);
+        // Image image = new Image(new File(line).toURI().toString());
         backgrounds.add(image);
       }
       input.close();
