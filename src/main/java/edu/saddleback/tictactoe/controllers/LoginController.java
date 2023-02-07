@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.image.Image;
 
 public class LoginController {
@@ -18,22 +19,19 @@ public class LoginController {
   public Button online_btn = null;
   public Button single_player_btn = null;
   public Button multiplayer_btn = null;
+  public Button return_btn = null;
   public AnchorPane overlay = null;
   public ImageView background_image = null;
 
   public LoginController() {
     backgrounds = new ArrayList<Image>();
-    readBackgrounds("data/backgrounds.db");
-    background_image.setImage(getRandomBackground());
+    // call readBackgrounds function and pass in path to data/backgrounds.db
+    // background_image.setImage(getRandomBackground());
   }
 
   @FXML
   public void initialize() {
-    single_player_btn.setOnAction(event -> {
-      overlay.setVisible(false);
-    });
-
-    online_btn.setOnAction(event -> {
+    return_btn.setOnAction(event -> {
       overlay.setVisible(false);
     });
   }
