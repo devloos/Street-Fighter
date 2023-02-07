@@ -5,3 +5,8 @@
   -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 1), 10, 0.2, 0, 5);
   -fx-translate-y: -2;
 }
+
+.btn:pressed {
+  -fx-effect: none;
+  -fx-translate-y: 2;
+}
