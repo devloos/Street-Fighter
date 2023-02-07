@@ -15,15 +15,15 @@
       <children>
          <ImageView fitHeight="480.0" fitWidth="640.0" pickOnBounds="true">
             <image>
-               <Image url="@../images/login-background-3.gif" />
+               <Image url="@../images/login-background-2.gif" />
             </image>
          </ImageView>
-         <Button layoutX="152.0" layoutY="324.0" mnemonicParsing="false" opacity="0.8" prefHeight="39.0" prefWidth="345.0" styleClass="btn" stylesheets="@../css/login.css" text="Multiplayer">
+         <Button fx:id="multiplayer_btn" layoutX="152.0" layoutY="324.0" mnemonicParsing="false" opacity="0.8" prefHeight="39.0" prefWidth="345.0" styleClass="btn" stylesheets="@../css/login.css" text="Multiplayer">
             <font>
                <Font name="Arial Black" size="18.0" />
             </font>
          </Button>
-         <Button layoutX="152.0" layoutY="267.0" mnemonicParsing="false" opacity="0.8" prefHeight="39.0" prefWidth="345.0" styleClass="btn" stylesheets="@../css/login.css" text="Single Player">
+         <Button fx:id="single_player_btn" layoutX="152.0" layoutY="267.0" mnemonicParsing="false" opacity="0.8" prefHeight="39.0" prefWidth="345.0" styleClass="btn" stylesheets="@../css/login.css" text="Single Player">
             <font>
                <Font name="Arial Black" size="18.0" />
             </font>
@@ -38,7 +38,7 @@
                <Cursor fx:constant="DISAPPEAR" />
             </cursor>
          </Button>
-         <Button layoutX="152.0" layoutY="380.0" mnemonicParsing="false" opacity="0.8" prefHeight="39.0" prefWidth="345.0" styleClass="btn" stylesheets="@../css/login.css" text="Online">
+         <Button fx:id="online_btn" layoutX="152.0" layoutY="380.0" mnemonicParsing="false" opacity="0.8" prefHeight="39.0" prefWidth="345.0" styleClass="btn" stylesheets="@../css/login.css" text="Online">
             <font>
                <Font name="Arial Black" size="18.0" />
             </font>
