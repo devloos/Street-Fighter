@@ -43,9 +43,9 @@
             <children>
                <HBox alignment="CENTER" layoutX="166.0" layoutY="10.0">
                   <children>
-                     <HBox fx:id="Balrog_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Balrog_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer1" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
-                           <ImageView fitHeight="60.0" fitWidth="60.0" onMouseClicked="#selectPlayer1">
+                           <ImageView fitHeight="60.0" fitWidth="60.0">
                               <image>
                                  <Image url="@../images/avatars/Balrog.jpg" />
                               </image>
@@ -62,7 +62,7 @@
                </HBox>
                <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" GridPane.columnIndex="1">
                   <children>
-                     <HBox fx:id="Bison_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Bison_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer1" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -81,7 +81,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="2">
                   <children>
-                     <HBox fx:id="Blanka_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Blanka_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer1" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="blanka" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -100,7 +100,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="3">
                   <children>
-                     <HBox fx:id="Cammy_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Cammy_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer1" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="cammy" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -120,7 +120,7 @@
                </HBox>
                <HBox fx:id="chunLi" alignment="CENTER" GridPane.columnIndex="4">
                   <children>
-                     <HBox fx:id="ChunLi_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="ChunLi_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer1" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -139,7 +139,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="5">
                   <children>
-                     <HBox fx:id="Dee_Jay_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Dee_Jay_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer1" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="deeJay" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -158,7 +158,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="6">
                   <children>
-                     <HBox fx:id="Dhalism_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Dhalism_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer1" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="dhalism" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -177,7 +177,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="7">
                   <children>
-                     <HBox fx:id="Fei_Long_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Fei_Long_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer1" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="feiLong" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -196,7 +196,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.rowIndex="1">
                   <children>
-                     <HBox fx:id="Guile_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Guile_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer1" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="guile" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -215,7 +215,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                   <children>
-                     <HBox fx:id="Hawk_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Hawk_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer1" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="hawk" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -234,7 +234,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                   <children>
-                     <HBox fx:id="Honda_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Honda_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer1" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="honda" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -253,7 +253,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
                   <children>
-                     <HBox fx:id="Ken_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Ken_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer1" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="ken" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -272,7 +272,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="1">
                   <children>
-                     <HBox fx:id="Ryu_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Ryu_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer1" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="ryu" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -291,7 +291,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="5" GridPane.rowIndex="1">
                   <children>
-                     <HBox fx:id="Sagat_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Sagat_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer1" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="sagat" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -310,7 +310,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="6" GridPane.rowIndex="1">
                   <children>
-                     <HBox fx:id="Vega_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Vega_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer1" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="vega" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -329,7 +329,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="7" GridPane.rowIndex="1">
                   <children>
-                     <HBox fx:id="Zangief_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Zangief_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer1" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="zangief" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -372,7 +372,7 @@
             <children>
                <HBox alignment="CENTER" layoutX="166.0" layoutY="10.0">
                   <children>
-                     <HBox fx:id="Balrog_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Balrog_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer2" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -388,9 +388,9 @@
                </HBox>
                <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" GridPane.columnIndex="1">
                   <children>
-                     <HBox fx:id="Bison_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Bison_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer2" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
-                           <ImageView fx:id="bison" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#selectPlayer2">
+                           <ImageView fx:id="bison" fitHeight="60.0" fitWidth="60.0">
                               <image>
                                  <Image url="@../images/avatars/Bison.jpg" />
                               </image>
@@ -404,7 +404,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="2">
                   <children>
-                     <HBox fx:id="Blanka_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Blanka_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer2" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="blanka" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -420,7 +420,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="3">
                   <children>
-                     <HBox fx:id="Cammy_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Cammy_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer2" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="cammy" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -436,7 +436,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="4">
                   <children>
-                     <HBox fx:id="ChunLi_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="ChunLi_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer2" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="chunLi" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -452,7 +452,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="5">
                   <children>
-                     <HBox fx:id="Dee_Jay_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Dee_Jay_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer2" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="deeJay" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -468,7 +468,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="6">
                   <children>
-                     <HBox fx:id="Dhalism_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Dhalism_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer2" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="dhalism" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -484,7 +484,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="7">
                   <children>
-                     <HBox fx:id="Fei_Long_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Fei_Long_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer2" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="feiLong" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -500,7 +500,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.rowIndex="1">
                   <children>
-                     <HBox fx:id="Guile_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Guile_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer2" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="guile" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -516,7 +516,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                   <children>
-                     <HBox fx:id="Hawk_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Hawk_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer2" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="hawk" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -532,7 +532,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                   <children>
-                     <HBox fx:id="Honda_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Honda_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer2" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="honda" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -548,7 +548,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
                   <children>
-                     <HBox fx:id="Ken_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Ken_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer2" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="ken" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -564,7 +564,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="1">
                   <children>
-                     <HBox fx:id="Ryu_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Ryu_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer2" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="ryu" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -580,7 +580,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="5" GridPane.rowIndex="1">
                   <children>
-                     <HBox fx:id="Sagat_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Sagat_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer2" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="sagat" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -596,7 +596,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="6" GridPane.rowIndex="1">
                   <children>
-                     <HBox fx:id="Vega_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Vega_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer2" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="vega" fitHeight="60.0" fitWidth="60.0">
                               <image>
@@ -612,7 +612,7 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="7" GridPane.rowIndex="1">
                   <children>
-                     <HBox fx:id="Zangief_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Zangief_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer2" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
                            <ImageView fx:id="zangief" fitHeight="60.0" fitWidth="60.0">
                               <image>
