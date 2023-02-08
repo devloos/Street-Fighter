@@ -67,7 +67,10 @@
                      </Text>
                   </children>
                </VBox>
-               <Button fx:id="return_btn" layoutX="257.0" layoutY="160.0" mnemonicParsing="false" styleClass="btn" stylesheets="@../css/login.css" text="Return to Main Menu" />
+               <Button fx:id="return_btn" layoutX="237.0" layoutY="160.0" mnemonicParsing="false" styleClass="btn" stylesheets="@../css/login.css" text="Return to Main Menu">
+                  <font>
+                     <Font name="Arial Black" size="13.0" />
+                  </font></Button>
             </children>
          </AnchorPane>
       </children></AnchorPane>
