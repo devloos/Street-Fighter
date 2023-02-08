@@ -1,5 +1,4 @@
-images/login/login-background-1.gif
-images/login/login-background-2.gif
-images/login/login-background-3.gif
-images/login/login-background-4.gif
-images/login/login-background-5.gif
+src/main/resources/edu/saddleback/tictactoe/images/login/login-background-1.gif
+src/main/resources/edu/saddleback/tictactoe/images/login/login-background-2.gif
+src/main/resources/edu/saddleback/tictactoe/images/login/login-background-3.gif
+src/main/resources/edu/saddleback/tictactoe/images/login/login-background-4.gif
