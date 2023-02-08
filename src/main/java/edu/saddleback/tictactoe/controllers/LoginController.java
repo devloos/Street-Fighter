@@ -6,11 +6,11 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Random;
 
 import edu.saddleback.tictactoe.Game;
 
-import java.util.Random;
-
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -18,7 +18,6 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.scene.Scene;
-import javafx.fxml.FXMLLoader;
 
 public class LoginController {
   // all fxml properties
