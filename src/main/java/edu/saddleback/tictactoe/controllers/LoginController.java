@@ -6,8 +6,12 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import edu.saddleback.tictactoe.Game;
+
 import java.util.Random;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
@@ -25,7 +29,7 @@ public class LoginController {
 
   public LoginController() {
     backgrounds = new ArrayList<Image>();
-    readBackgrounds("src/main/resources/edu/saddleback/tictactoe/data/backgrounds.db");
+    readBackgrounds();
   }
 
   @FXML
@@ -33,28 +37,20 @@ public class LoginController {
     background_image.setImage(getRandomBackground());
 
     return_btn.setOnAction(event -> {
-      overlay.setVisible(false);
+        overlay.setVisible(false);
     });
-  }
 
-  @FXML
-  public void clickedMultiplayer() {}
-
-  @FXML
-  public void clickedSingleplayer() {
     single_player_btn.setOnAction(event -> {
       overlay.setVisible(true);
     });
-  }
 
-  @FXML
-  public void clickedOnline() {
     online_btn.setOnAction(event -> {
       overlay.setVisible(true);
     });
   }
 
-  public void readBackgrounds(String filePath) {
+  public void readBackgrounds() {
+    String filePath = Game.class.getResource("data/backgrounds.db").toString().substring(5);
     try {
       Scanner input = new Scanner(new File(filePath));
       while (input.hasNextLine()) {

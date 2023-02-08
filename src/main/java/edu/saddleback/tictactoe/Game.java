@@ -8,8 +8,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Game extends Application {
-  // temporary
-  // public static final String FXML_FILE = "views/Game.fxml";
   public static final String FXML_FILE = "views/Login.fxml";
 
   @Override
