@@ -8,6 +8,10 @@ public class Player {
     this.name = name;
   }
 
+  public Player() {
+
+  }
+
   public URL getAvatarPath() {
     return avatarPath;
   }

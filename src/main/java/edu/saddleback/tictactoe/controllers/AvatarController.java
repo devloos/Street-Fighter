@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import edu.saddleback.tictactoe.Game;
+import edu.saddleback.tictactoe.models.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -24,48 +26,75 @@ public class AvatarController {
     private Scene scene;
     public HBox p1 = null;
     public HBox p2 = null;
-    public HBox player1Space = null;
-    public HBox player2Space = null;
+    public GridPane grid1 = null;
+    public GridPane grid2 = null;
+
+
+    private HBox previousP1 = null;
+    private HBox previousP2 = null;
+
+    public AvatarController() {
+        player1 = new Player();
+        player2 = new Player();
+    }
 
     // will use setAvatarPath for player1
     @FXML
-    public void selectPlayer1(MouseEvent event) {
+    public void player1SelectedAvatar(MouseEvent event) {
         Node node = event.getPickResult().getIntersectedNode();
 
         if(!(node instanceof ImageView)) {
             return;
         }
 
-        p1 = (HBox) node.getParent();
+        HBox tile = (HBox) node.getParent();
 
-        String player1CharString = p1.getId();
-        player1CharString = player1CharString.substring(0, player1CharString.length() - 2);
-
-        URL url = Game.class.getResource("images/avatars/" + player1CharString + ".jpg");
         ImageView image = (ImageView) p1.getChildren().get(0);
-        image.setImage(new Image(url.toString()));
-        player1Space.getChildren().add(image);
-        
+
+        if(previousP1 != null) {
+            previousP1.getChildren().get(0).setVisible(true);
+        }
+        previousP1 = tile;
+
+        ImageView tileImage = (ImageView) tile.getChildren().get(0);
+
+        image.setImage(tileImage.getImage());
+        previousP1.getChildren().get(0).setVisible(false);
+
+
+        // set functionality for player name as well
+        String avatarStr = tile.getId().substring(0, tile.getId().length() - 2);
+        URL avatarPath = Game.class.getResource("images/avatars/" + avatarStr + ".jpg");
+        player1.setAvatarPath(avatarPath);
     }
 
     // will use setAvatarPath for player2
     @FXML
-    public void selectPlayer2(MouseEvent event) {
+    public void player2SelectedAvatar(MouseEvent event) {
         Node node = event.getPickResult().getIntersectedNode();
 
         if(!(node instanceof ImageView)) {
             return;
         }
 
-        p2 = (HBox) node.getParent();
+        HBox tile = (HBox) node.getParent();
 
-        String player2CharString = p2.getId();
-        player2CharString = player2CharString.substring(0, player2CharString.length() - 2);
-
-        URL url = Game.class.getResource("images/avatars/" + player2CharString + ".jpg");
         ImageView image = (ImageView) p2.getChildren().get(0);
-        image.setImage(new Image(url.toString()));
-        player2Space.getChildren().add(image);
+
+        if(previousP2 != null) {
+            previousP2.getChildren().get(0).setVisible(true);
+        }
+        previousP2 = tile;
+
+        ImageView tileImage = (ImageView) tile.getChildren().get(0);
+
+        image.setImage(tileImage.getImage());
+        previousP2.getChildren().get(0).setVisible(false);
+
+        // set functionality for player name as well
+        String avatarStr = tile.getId().substring(0, tile.getId().length() - 2);
+        URL avatarPath = Game.class.getResource("images/avatars/" + avatarStr + ".jpg");
+        player2.setAvatarPath(avatarPath);
     }
     
     @FXML
@@ -76,4 +105,11 @@ public class AvatarController {
         stage.setScene(scene);
         stage.show();
     }
+
+    // make function to verify if player info is null, if it is send an alert
+        // will also send an alert if the player's URLs (avatar) is the same
+
+
+    private Player player1 = null;
+    private Player player2 = null;
 }
