@@ -1,11 +1,13 @@
 package edu.saddleback.tictactoe.controllers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import edu.saddleback.tictactoe.Game;
 import edu.saddleback.tictactoe.models.Player;
 import edu.saddleback.tictactoe.services.GameService;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -21,15 +23,12 @@ public class GameController {
   public AnchorPane profile1 = null;
   public AnchorPane profile2 = null;
   public Button restart_btn = null;
-  public Button quit_btn = null;
+  public Button return_btn = null;
 
   // we should take in two players here
-  public GameController() {
-    p1 = new Player(Game.class.getResource("images/avatars/Blanka.jpg"),
-        "Carlos");
-    p2 = new Player(Game.class.getResource("images/avatars/Sagat.jpg"),
-        "Professor");
-
+  public GameController(Player player1, Player player2) {
+    p1 = player1;
+    p2 = player2;
     initBoard();
   }
 
@@ -43,9 +42,15 @@ public class GameController {
       resetGame();
     });
 
-    quit_btn.setOnAction(event -> {
-      Stage stage = (Stage) overlay.getScene().getWindow();
-      stage.close();
+    return_btn.setOnAction(event -> {
+      try {
+        FXMLLoader loader = new FXMLLoader(Game.class.getResource("views/Login.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        AnchorPane pane = loader.<AnchorPane>load();
+        stage.getScene().setRoot(pane);
+      } catch (IOException e) {
+        System.out.println(e);
+      }
     });
   }
 

@@ -2,7 +2,6 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -12,19 +11,23 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.saddleback.tictactoe.controllers.AvatarController">
+<AnchorPane stylesheets="@../css/selection.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.saddleback.tictactoe.controllers.AvatarController">
     <AnchorPane prefHeight="480.0" prefWidth="640.0">
       <children>
          <ImageView fitHeight="480.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="@../images/game-background.gif" />
+               <Image url="@../images/selection.gif" />
             </image>
             <viewport>
-               <Rectangle2D height="480.0" minX="80.0" width="640.0" />
+               <Rectangle2D height="480.0" width="640.0" />
             </viewport>
          </ImageView>
+         <Button layoutX="271.0" layoutY="228.0" mnemonicParsing="false" onAction="#switchToGameScreen" styleClass="btn" text="Start Game">
+            <font>
+               <Font name="Arial Black" size="13.0" />
+            </font></Button>
          <GridPane fx:id="grid1" hgap="3.0" layoutX="47.0" layoutY="14.0" onMouseClicked="#player1SelectedAvatar" prefHeight="173.0" prefWidth="547.0" vgap="3.0">
            <columnConstraints>
                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -54,7 +57,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Bison_1" alignment="CENTER" layoutX="10.0" layoutY="10.0" GridPane.columnIndex="1">
@@ -70,7 +73,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Blanka_1" alignment="CENTER" GridPane.columnIndex="2">
@@ -86,7 +89,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Cammy_1" alignment="CENTER" GridPane.columnIndex="3">
@@ -102,7 +105,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="ChunLi_1" alignment="CENTER" GridPane.columnIndex="4">
@@ -118,7 +121,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Dee_Jay_1" alignment="CENTER" GridPane.columnIndex="5">
@@ -134,7 +137,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Dhalsim_1" alignment="CENTER" GridPane.columnIndex="6">
@@ -150,7 +153,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Fei_Long_1" alignment="CENTER" GridPane.columnIndex="7">
@@ -166,7 +169,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Guile_1" alignment="CENTER" GridPane.rowIndex="1">
@@ -182,7 +185,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Hawk_1" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -198,7 +201,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Honda_1" alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -214,7 +217,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Ken_1" alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
@@ -230,7 +233,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Ryu_1" alignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="1">
@@ -246,7 +249,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Sagat_1" alignment="CENTER" GridPane.columnIndex="5" GridPane.rowIndex="1">
@@ -262,7 +265,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Vega_1" alignment="CENTER" GridPane.columnIndex="6" GridPane.rowIndex="1">
@@ -278,7 +281,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Zangief_1" alignment="CENTER" GridPane.columnIndex="7" GridPane.rowIndex="1">
@@ -294,17 +297,11 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
             </children>
          </GridPane>
-         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" visible="false">
-            <children>
-               <VBox opacity="0.7" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: black;" />
-               <Button layoutX="213.0" layoutY="209.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="198.0" text="Return to Main Menu" />
-            </children>
-         </AnchorPane>
          <GridPane fx:id="grid2" hgap="3.0" layoutX="50.0" layoutY="313.0" onMouseClicked="#player2SelectedAvatar" prefHeight="153.0" prefWidth="540.0" vgap="3.0">
             <columnConstraints>
                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -331,7 +328,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Bison_2" alignment="CENTER" layoutX="10.0" layoutY="10.0" GridPane.columnIndex="1">
@@ -344,7 +341,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Blanka_2" alignment="CENTER" GridPane.columnIndex="2">
@@ -357,7 +354,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Cammy_2" alignment="CENTER" GridPane.columnIndex="3">
@@ -370,7 +367,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="ChunLi_2" alignment="CENTER" GridPane.columnIndex="4">
@@ -383,7 +380,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Dee_Jay_2" alignment="CENTER" GridPane.columnIndex="5">
@@ -396,7 +393,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Dhalsim_2" alignment="CENTER" GridPane.columnIndex="6">
@@ -409,7 +406,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Fei_Long_2" alignment="CENTER" GridPane.columnIndex="7">
@@ -422,7 +419,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Guile_2" alignment="CENTER" GridPane.rowIndex="1">
@@ -435,7 +432,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Hawk_2" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -448,7 +445,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Honda_2" alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -461,7 +458,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Ken_2" alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
@@ -474,7 +471,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Ryu_2" alignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="1">
@@ -487,7 +484,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Sagat_2" alignment="CENTER" GridPane.columnIndex="5" GridPane.rowIndex="1">
@@ -500,7 +497,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Vega_2" alignment="CENTER" GridPane.columnIndex="6" GridPane.rowIndex="1">
@@ -513,7 +510,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
                <HBox fx:id="Zangief_2" alignment="CENTER" GridPane.columnIndex="7" GridPane.rowIndex="1">
@@ -526,13 +523,12 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
-                     <String fx:value="tile-taken" />
+                     <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
             </children>
          </GridPane>
-         <Button layoutX="282.0" layoutY="240.0" mnemonicParsing="false" onAction="#switchToGameScreen" text="Start Game" />
-         <HBox fx:id="p1" alignment="CENTER" layoutX="62.0" layoutY="190.0" prefHeight="100.0" prefWidth="200.0">
+         <HBox fx:id="p1" alignment="CENTER" layoutX="50.0" layoutY="178.0" prefHeight="100.0" prefWidth="200.0">
             <children>
                <ImageView fx:id="p1StartImage" fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true" />
             </children>
@@ -540,7 +536,7 @@
                <DropShadow />
             </effect>
          </HBox>
-         <HBox fx:id="p2" alignment="CENTER" layoutX="371.0" layoutY="187.0" prefHeight="100.0" prefWidth="200.0">
+         <HBox fx:id="p2" alignment="CENTER" layoutX="390.0" layoutY="178.0" prefHeight="100.0" prefWidth="200.0">
             <children>
                <ImageView fx:id="p2StartImage" fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                   <image>

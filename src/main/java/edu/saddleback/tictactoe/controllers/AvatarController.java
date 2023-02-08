@@ -24,8 +24,8 @@ public class AvatarController {
     private HBox previousP2 = null;
 
     public AvatarController() {
-        player1 = new Player();
-        player2 = new Player();
+        player1 = new Player("Carlos");
+        player2 = new Player("Professor");
     }
 
     // will use setAvatarPath for player1
@@ -90,7 +90,12 @@ public class AvatarController {
 
     @FXML
     public void switchToGameScreen(ActionEvent event) throws IOException {
+        if (player1.getAvatarPath() == null || player2.getAvatarPath() == null) {
+            return;
+        }
+
         FXMLLoader loader = new FXMLLoader(Game.class.getResource("views/Game.fxml"));
+        loader.setController(new GameController(player1, player2));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         AnchorPane pane = loader.<AnchorPane>load();
         stage.getScene().setRoot(pane);
