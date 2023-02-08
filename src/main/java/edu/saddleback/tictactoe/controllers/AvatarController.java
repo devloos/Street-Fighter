@@ -9,26 +9,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-
 public class AvatarController {
     // fxml properties
-    private Stage stage;
-    private Scene scene;
     public HBox p1 = null;
     public HBox p2 = null;
-    public GridPane grid1 = null;
-    public GridPane grid2 = null;
-
 
     private HBox previousP1 = null;
     private HBox previousP2 = null;
@@ -43,7 +33,7 @@ public class AvatarController {
     public void player1SelectedAvatar(MouseEvent event) {
         Node node = event.getPickResult().getIntersectedNode();
 
-        if(!(node instanceof ImageView)) {
+        if (!(node instanceof ImageView)) {
             return;
         }
 
@@ -51,7 +41,8 @@ public class AvatarController {
 
         ImageView image = (ImageView) p1.getChildren().get(0);
 
-        if(previousP1 != null) {
+        // should be false on initial
+        if (previousP1 != null) {
             previousP1.getChildren().get(0).setVisible(true);
         }
         previousP1 = tile;
@@ -60,7 +51,6 @@ public class AvatarController {
 
         image.setImage(tileImage.getImage());
         previousP1.getChildren().get(0).setVisible(false);
-
 
         // set functionality for player name as well
         String avatarStr = tile.getId().substring(0, tile.getId().length() - 2);
@@ -73,7 +63,7 @@ public class AvatarController {
     public void player2SelectedAvatar(MouseEvent event) {
         Node node = event.getPickResult().getIntersectedNode();
 
-        if(!(node instanceof ImageView)) {
+        if (!(node instanceof ImageView)) {
             return;
         }
 
@@ -81,7 +71,8 @@ public class AvatarController {
 
         ImageView image = (ImageView) p2.getChildren().get(0);
 
-        if(previousP2 != null) {
+        // should be false on initial
+        if (previousP2 != null) {
             previousP2.getChildren().get(0).setVisible(true);
         }
         previousP2 = tile;
@@ -96,19 +87,17 @@ public class AvatarController {
         URL avatarPath = Game.class.getResource("images/avatars/" + avatarStr + ".jpg");
         player2.setAvatarPath(avatarPath);
     }
-    
+
     @FXML
     public void switchToGameScreen(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(Game.class.getResource("views/Game.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = loader.<Scene>load();
-        stage.setScene(scene);
-        stage.show();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        AnchorPane pane = loader.<AnchorPane>load();
+        stage.getScene().setRoot(pane);
     }
 
     // make function to verify if player info is null, if it is send an alert
-        // will also send an alert if the player's URLs (avatar) is the same
-
+    // will also send an alert if the player's URLs (avatar) is the same
 
     private Player player1 = null;
     private Player player2 = null;

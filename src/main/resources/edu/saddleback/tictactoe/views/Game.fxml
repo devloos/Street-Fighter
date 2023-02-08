@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Scene stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.saddleback.tictactoe.controllers.GameController">
+<AnchorPane stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.saddleback.tictactoe.controllers.GameController">
     <AnchorPane fx:id="root" prefHeight="480.0" prefWidth="640.0">
       <children>
          <ImageView fitHeight="480.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true">
@@ -155,4 +155,4 @@
             </children>
          </AnchorPane>
       </children></AnchorPane>
-</Scene>
+</AnchorPane>
