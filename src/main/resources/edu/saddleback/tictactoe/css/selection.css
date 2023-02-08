@@ -1,0 +1,30 @@
+.tile {
+  -fx-background-color: rgba(72, 140, 165, 0.5);
+  -fx-border-color: rgba(0, 0, 0, 0.4);
+}
+
+.tile-active {
+  -fx-cursor: open_hand;
+}
+
+.tile-active:hover {
+  -fx-scale-x: 1.05;
+  -fx-scale-y: 1.05;
+}
+
+.tile-active:pressed {
+  -fx-cursor: closed_hand;
+}
+
+.btn {
+  -fx-background-color: rgb(38, 58, 92);
+  -fx-text-fill: white;
+  -fx-cursor: hand;
+  -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 1), 10, 0.2, 0, 5);
+  -fx-translate-y: -2;
+}
+
+.btn:pressed {
+  -fx-effect: none;
+  -fx-translate-y: 2;
+}

@@ -5,10 +5,11 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class Game extends Application {
-  public static final String FXML_FILE = "views/Game.fxml";
+  public static final String FXML_FILE = "views/Login.fxml";
 
   @Override
   public void start(Stage window) throws Exception {
@@ -18,7 +19,8 @@ public class Game extends Application {
     FXMLLoader loader = new FXMLLoader(Game.class.getResource(FXML_FILE));
 
     try {
-      Scene scene = loader.<Scene>load();
+      AnchorPane pane = loader.<AnchorPane>load();
+      Scene scene = new Scene(pane);
       window.setScene(scene);
       window.show();
     } catch (IOException e) {

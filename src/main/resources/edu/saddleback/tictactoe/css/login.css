@@ -1,0 +1,18 @@
+.btn {
+  -fx-background-color: rgb(212, 168, 65);
+  -fx-text-fill: white;
+  -fx-cursor: hand;
+  -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 1), 10, 0.2, 0, 5);
+  -fx-translate-y: -2;
+}
+
+.btn:pressed {
+  -fx-effect: none;
+  -fx-translate-y: 2;
+}
+
+.btn:hover {
+  -fx-scale-x: 1.05;
+  -fx-scale-y: 1.05;
+  -fx-cursor: open_hand;
+}
