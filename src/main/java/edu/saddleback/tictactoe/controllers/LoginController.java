@@ -1,14 +1,9 @@
 package edu.saddleback.tictactoe.controllers;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.Random;
-
 import edu.saddleback.tictactoe.Game;
+import edu.saddleback.tictactoe.services.LoginService;
+
+import java.util.ArrayList;
 
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
@@ -31,12 +26,12 @@ public class LoginController {
 
   public LoginController() {
     backgrounds = new ArrayList<Image>();
-    readBackgrounds();
+    LoginService.readBackgrounds(backgrounds);
   }
 
   @FXML
   public void initialize() {
-    background_image.setImage(getRandomBackground());
+    background_image.setImage(LoginService.getRandomBackground(backgrounds));
 
     return_btn.setOnAction(event -> {
         overlay.setVisible(false);
@@ -61,30 +56,6 @@ public class LoginController {
     online_btn.setOnAction(event -> {
       overlay.setVisible(true);
     });
-  }
-
-  public void readBackgrounds() {
-    String filePath = Game.class.getResource("data/backgrounds.db").toString().substring(5);
-    try {
-      Scanner input = new Scanner(new File(filePath));
-      while (input.hasNextLine()) {
-        String line = input.nextLine();
-        InputStream stream = new FileInputStream(line);
-        Image image = new Image(stream);
-        // Image image = new Image(new File(line).toURI().toString());
-        backgrounds.add(image);
-      }
-      input.close();
-    } catch (FileNotFoundException e) {
-      System.out.println("File not found: " + filePath);
-    }
-  }
-
-  public Image getRandomBackground() {
-    Random rand = new Random();
-    int index = rand.nextInt(backgrounds.size());
-    Image randomBackground = backgrounds.get(index);
-    return randomBackground;
   }
 
   private ArrayList<Image> backgrounds = null;

@@ -1,28 +1,39 @@
 package edu.saddleback.tictactoe.services;
 
-public class LoginService {
-  // public static void readBackgrounds() {
-  //   String filePath = Game.class.getResource("data/backgrounds.db").toString().substring(5);
-  //   try {
-  //     Scanner input = new Scanner(new File(filePath));
-  //     while (input.hasNextLine()) {
-  //       String line = input.nextLine();
-  //       InputStream stream = new FileInputStream(line);
-  //       Image image = new Image(stream);
-  //       // Image image = new Image(new File(line).toURI().toString());
-  //       backgrounds.add(image);
-  //     }
-  //     input.close();
-  //   } catch (FileNotFoundException e) {
-  //     System.out.println("File not found: " + filePath);
-  //   }
-  // }
+import edu.saddleback.tictactoe.Game;
 
-  // public static Image getRandomBackground() {
-  //   Random rand = new Random();
-  //   int index = rand.nextInt(backgrounds.size());
-  //   Image randomBackground = backgrounds.get(index);
-  //   return randomBackground;
-  // }
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Random;
+
+import javafx.scene.image.Image;
+
+public class LoginService {
+  public static void readBackgrounds(ArrayList<Image> backgrounds) {
+    String filePath = Game.class.getResource("data/backgrounds.db").toString().substring(5);
+    try {
+      Scanner input = new Scanner(new File(filePath));
+      while (input.hasNextLine()) {
+        String line = input.nextLine();
+        InputStream stream = new FileInputStream(line);
+        Image image = new Image(stream);
+        backgrounds.add(image);
+      }
+      input.close();
+    } catch (FileNotFoundException e) {
+      System.out.println("File not found: " + filePath);
+    }
+  }
+
+  public static Image getRandomBackground(ArrayList<Image> backgrounds) {
+    Random rand = new Random();
+    int index = rand.nextInt(backgrounds.size());
+    Image randomBackground = backgrounds.get(index);
+    return randomBackground;
+  }
 
 }
