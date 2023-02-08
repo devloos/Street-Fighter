@@ -38,6 +38,9 @@ public class LoginController {
   }
 
   @FXML
+  public void clickedMultiplayer() {}
+
+  @FXML
   public void clickedSingleplayer() {
     single_player_btn.setOnAction(event -> {
       overlay.setVisible(true);
