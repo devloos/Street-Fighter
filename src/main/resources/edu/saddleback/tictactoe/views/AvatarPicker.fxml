@@ -158,9 +158,9 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="6">
                   <children>
-                     <HBox fx:id="Dhalism_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer1" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Dhalsim_1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer1" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
-                           <ImageView fx:id="dhalism" fitHeight="60.0" fitWidth="60.0">
+                           <ImageView fitHeight="60.0" fitWidth="60.0">
                               <image>
                                  <Image url="@../images/avatars/Dhalsim.jpg" />
                               </image>
@@ -468,9 +468,9 @@
                </HBox>
                <HBox alignment="CENTER" GridPane.columnIndex="6">
                   <children>
-                     <HBox fx:id="Dhalism_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer2" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
+                     <HBox fx:id="Dhalsim_2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectPlayer2" prefHeight="50.0" prefWidth="50.0" styleClass="tile-image-p1">
                         <children>
-                           <ImageView fx:id="dhalism" fitHeight="60.0" fitWidth="60.0">
+                           <ImageView fitHeight="60.0" fitWidth="60.0">
                               <image>
                                  <Image url="@../images/avatars/Dhalsim.jpg" />
                               </image>
@@ -629,17 +629,17 @@
             </children>
          </GridPane>
          <Button layoutX="282.0" layoutY="240.0" mnemonicParsing="false" onAction="#switchToGameScreen" text="Start Game" />
-         <HBox fx:id="p1" alignment="CENTER" layoutX="62.0" layoutY="190.0" prefHeight="100.0" prefWidth="200.0">
+         <HBox fx:id="player1Space" alignment="CENTER" layoutX="62.0" layoutY="190.0" prefHeight="100.0" prefWidth="200.0">
             <children>
-               <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true" />
+               <ImageView fx:id="p1StartImage" fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true" />
             </children>
             <effect>
                <DropShadow />
             </effect>
          </HBox>
-         <HBox fx:id="p2" alignment="CENTER" layoutX="371.0" layoutY="187.0" prefHeight="100.0" prefWidth="200.0">
+         <HBox fx:id="player2Space" alignment="CENTER" layoutX="371.0" layoutY="187.0" prefHeight="100.0" prefWidth="200.0">
             <children>
-               <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fx:id="p2StartImage" fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@../images" />
                   </image>

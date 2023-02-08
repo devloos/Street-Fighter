@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -23,6 +24,8 @@ public class AvatarController {
     private Scene scene;
     public HBox p1 = null;
     public HBox p2 = null;
+    public HBox player1Space = null;
+    public HBox player2Space = null;
 
     // will use setAvatarPath for player1
     @FXML
@@ -33,16 +36,16 @@ public class AvatarController {
             return;
         }
 
-        if(node instanceof ImageView) {
-            p1 = (HBox) node.getParent();
-        }
+        p1 = (HBox) node.getParent();
 
         String player1CharString = p1.getId();
         player1CharString = player1CharString.substring(0, player1CharString.length() - 2);
-        System.out.println(player1CharString);
 
         URL url = Game.class.getResource("images/avatars/" + player1CharString + ".jpg");
-        System.out.println(url.toString());
+        ImageView image = (ImageView) p1.getChildren().get(0);
+        image.setImage(new Image(url.toString()));
+        player1Space.getChildren().add(image);
+        
     }
 
     // will use setAvatarPath for player2
@@ -58,10 +61,11 @@ public class AvatarController {
 
         String player2CharString = p2.getId();
         player2CharString = player2CharString.substring(0, player2CharString.length() - 2);
-        System.out.println(player2CharString);
 
         URL url = Game.class.getResource("images/avatars/" + player2CharString + ".jpg");
-        System.out.println(url.toString());
+        ImageView image = (ImageView) p2.getChildren().get(0);
+        image.setImage(new Image(url.toString()));
+        player2Space.getChildren().add(image);
     }
     
     @FXML
