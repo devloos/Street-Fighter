@@ -72,7 +72,7 @@
                   </font></Button>
             </children>
          </AnchorPane>
-         <ImageView fitHeight="173.0" fitWidth="355.0" layoutX="143.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+         <ImageView fx:id="logo" fitHeight="173.0" fitWidth="355.0" layoutX="143.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../images/logo.png" />
             </image>
