@@ -23,7 +23,6 @@ public class LoginController {
   public AnchorPane overlay = null;
   public AnchorPane root = null;
   public ImageView background_image = null;
-  public ImageView logo = null;
 
   public LoginController() {
     backgrounds = new ArrayList<Image>();
@@ -36,12 +35,10 @@ public class LoginController {
 
     return_btn.setOnAction(event -> {
       overlay.setVisible(false);
-      logo.setVisible(true);
     });
 
     single_player_btn.setOnAction(event -> {
       overlay.setVisible(true);
-      logo.setVisible(false);
     });
 
     multiplayer_btn.setOnAction(event -> {
@@ -57,7 +54,6 @@ public class LoginController {
 
     online_btn.setOnAction(event -> {
       overlay.setVisible(true);
-      logo.setVisible(false);
     });
   }
 
