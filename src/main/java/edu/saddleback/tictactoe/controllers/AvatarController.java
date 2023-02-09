@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -24,6 +25,8 @@ public class AvatarController {
     public AnchorPane error = null;
     public Button error_btn = null;
     public Text error_message = null;
+    public TextField p1TextField = null;
+    public TextField p2TextField = null;
 
     private HBox previousP1 = null;
     private HBox previousP2 = null;
@@ -119,6 +122,16 @@ public class AvatarController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         AnchorPane pane = loader.<AnchorPane>load();
         stage.getScene().setRoot(pane);
+    }
+
+    @FXML
+    public void getPlayer1Name() {
+        player1.setName(p1TextField.getText());
+    }
+
+    @FXML
+    public void getPlayer2Name() {
+        player2.setName(p2TextField.getText());
     }
 
     private Player player1 = null;
