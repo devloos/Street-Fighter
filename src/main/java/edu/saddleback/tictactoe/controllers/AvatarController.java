@@ -103,13 +103,13 @@ public class AvatarController {
     @FXML
     public void switchToGameScreen(ActionEvent event) throws IOException {
         if (player1.getAvatarPath() == null || player2.getAvatarPath() == null) {
-            error_message.setText("Please choose an avatar");
+            error_message.setText("PLEASE CHOOSE AN AVATAR!");
             error.setVisible(true);
             return;
         }
 
         if (player1.getAvatarPath().equals(player2.getAvatarPath())) {
-            error_message.setText("Please choose different avatars");
+            error_message.setText("PLEASE CHOOSE DIFFERENT AVATARS!");
             error.setVisible(true);
             return;
         }
