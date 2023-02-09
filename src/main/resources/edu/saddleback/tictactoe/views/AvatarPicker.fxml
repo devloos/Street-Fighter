@@ -544,7 +544,7 @@
          </GridPane>
          <HBox fx:id="p1" alignment="CENTER" layoutX="50.0" layoutY="178.0" prefHeight="100.0" prefWidth="200.0">
             <children>
-               <ImageView fx:id="p1StartImage" fitHeight="90.0" fitWidth="100.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" />
+               <ImageView fx:id="p1StartImage" fitHeight="90.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
             </children>
             <effect>
                <DropShadow />
