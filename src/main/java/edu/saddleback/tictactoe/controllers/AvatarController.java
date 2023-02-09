@@ -121,9 +121,6 @@ public class AvatarController {
         stage.getScene().setRoot(pane);
     }
 
-    // make function to verify if player info is null, if it is send an alert
-    // will also send an alert if the player's URLs (avatar) is the same
-
     private Player player1 = null;
     private Player player2 = null;
 }
