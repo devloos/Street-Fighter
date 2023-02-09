@@ -40,8 +40,6 @@ public class AvatarController {
     public void initialize() {
         error_btn.setOnAction(event -> {
             error.setVisible(false);
-            p1TextField.setVisible(true);
-            p2TextField.setVisible(true);
         });
     }
 
