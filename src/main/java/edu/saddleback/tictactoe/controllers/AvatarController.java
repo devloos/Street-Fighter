@@ -32,14 +32,16 @@ public class AvatarController {
     private HBox previousP2 = null;
 
     public AvatarController() {
-        player1 = new Player("Carlos");
-        player2 = new Player("Professor");
+        player1 = new Player("Player 1");
+        player2 = new Player("Player 2");
     }
 
     @FXML
     public void initialize() {
         error_btn.setOnAction(event -> {
             error.setVisible(false);
+            p1TextField.setVisible(true);
+            p2TextField.setVisible(true);
         });
     }
 
@@ -117,6 +119,15 @@ public class AvatarController {
             return;
         }
 
+        // Set player names that are currently in their respective text fields
+        if (p1TextField.getText() != "") {
+            player1.setName(p1TextField.getText());
+        }
+
+        if (p2TextField.getText() != "") {
+            player2.setName(p2TextField.getText());
+        }
+
         FXMLLoader loader = new FXMLLoader(Game.class.getResource("views/Game.fxml"));
         loader.setController(new GameController(player1, player2));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -124,15 +135,6 @@ public class AvatarController {
         stage.getScene().setRoot(pane);
     }
 
-    @FXML
-    public void getPlayer1Name() {
-        player1.setName(p1TextField.getText());
-    }
-
-    @FXML
-    public void getPlayer2Name() {
-        player2.setName(p2TextField.getText());
-    }
 
     private Player player1 = null;
     private Player player2 = null;
