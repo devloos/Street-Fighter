@@ -94,6 +94,11 @@ public class AvatarController {
             return;
         }
 
+        if (player1.getAvatarPath().equals(player2.getAvatarPath())) {
+            return;
+        }
+
+
         FXMLLoader loader = new FXMLLoader(Game.class.getResource("views/Game.fxml"));
         loader.setController(new GameController(player1, player2));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
