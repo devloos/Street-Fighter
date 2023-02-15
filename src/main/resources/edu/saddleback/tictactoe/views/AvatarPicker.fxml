@@ -562,7 +562,7 @@
                <DropShadow />
             </effect>
          </HBox>
-         <AnchorPane fx:id="error" prefHeight="200.0" prefWidth="200.0">
+         <AnchorPane fx:id="error" prefHeight="200.0" prefWidth="200.0" visible="false">
             <children>
                <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.85" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: black;" />
                <Button fx:id="error_btn" layoutX="215.0" layoutY="273.0" mnemonicParsing="false" styleClass="btn" stylesheets="@../css/selection.css" text="Return to Avatar Selection">
