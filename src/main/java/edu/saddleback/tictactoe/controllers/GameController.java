@@ -14,7 +14,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class GameController {
   // all fxml properties
@@ -30,6 +33,14 @@ public class GameController {
     p1 = player1;
     p2 = player2;
     initBoard();
+    media = new MediaPlayer(new Media(Game.class.getResource("audio/vs.mp3").toString()));
+    media.setOnEndOfMedia(new Runnable() {
+      public void run() {
+        media.seek(Duration.ZERO); // reset playback position to the beginning
+        media.play(); // start playing from the beginning
+      }
+    });
+    media.play();
   }
 
   @FXML
@@ -47,6 +58,7 @@ public class GameController {
         FXMLLoader loader = new FXMLLoader(Game.class.getResource("views/Login.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         AnchorPane pane = loader.<AnchorPane>load();
+        media.stop();
         stage.getScene().setRoot(pane);
       } catch (IOException e) {
         System.out.println(e);
@@ -208,6 +220,7 @@ public class GameController {
   private Player p1 = null;
   private Player p2 = null;
   private Token currentPlayer = Token.X;
+  private MediaPlayer media = null;
 
   private enum Token {
     X, Y

@@ -13,6 +13,9 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.scene.Node;
+import javafx.util.Duration;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class LoginController {
   // all fxml properties
@@ -27,6 +30,14 @@ public class LoginController {
   public LoginController() {
     backgrounds = new ArrayList<Image>();
     LoginService.readBackgrounds(backgrounds);
+    media = new MediaPlayer(new Media(Game.class.getResource("audio/title.mp3").toString()));
+    media.setOnEndOfMedia(new Runnable() {
+      public void run() {
+        media.seek(Duration.ZERO); // reset playback position to the beginning
+        media.play(); // start playing from the beginning
+      }
+    });
+    media.play();
   }
 
   @FXML
@@ -46,6 +57,7 @@ public class LoginController {
         FXMLLoader loader = new FXMLLoader(Game.class.getResource("views/AvatarPicker.fxml"));
         AnchorPane pane = loader.<AnchorPane>load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        media.stop();
         stage.getScene().setRoot(pane);
       } catch (Exception e) {
         System.out.println(e);
@@ -58,4 +70,5 @@ public class LoginController {
   }
 
   private ArrayList<Image> backgrounds = null;
+  private MediaPlayer media = null;
 }
