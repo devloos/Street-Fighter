@@ -92,6 +92,8 @@ public class GameController {
 
     if (isWinner()) {
       overlay.setVisible(true);
+    } else if (isBoardFull()) {
+      overlay.setVisible(true);
     }
   }
 
@@ -154,6 +156,15 @@ public class GameController {
     }
 
     return false;
+  }
+
+  private boolean isBoardFull() {
+    for (ArrayList<Token> row : board) {
+      if (row.contains(null)) {
+        return false;
+      }
+    }
+    return true;
   }
 
   private void resetGame() {
