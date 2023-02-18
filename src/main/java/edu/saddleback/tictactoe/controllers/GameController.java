@@ -34,12 +34,11 @@ public class GameController {
     p2 = player2;
     initBoard();
     media = new MediaPlayer(new Media(Game.class.getResource("audio/vs.mp3").toString()));
-    media.setOnEndOfMedia(new Runnable() {
-      public void run() {
-        media.seek(Duration.ZERO); // reset playback position to the beginning
-        media.play(); // start playing from the beginning
-      }
+    media.setOnEndOfMedia(() -> {
+      media.seek(Duration.ZERO); // reset playback position to the beginning
+      media.play(); // start playing from the beginning
     });
+    media.setVolume(0.1);
     media.play();
   }
 

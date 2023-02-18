@@ -31,12 +31,11 @@ public class LoginController {
     backgrounds = new ArrayList<Image>();
     LoginService.readBackgrounds(backgrounds);
     media = new MediaPlayer(new Media(Game.class.getResource("audio/title.mp3").toString()));
-    media.setOnEndOfMedia(new Runnable() {
-      public void run() {
-        media.seek(Duration.ZERO); // reset playback position to the beginning
-        media.play(); // start playing from the beginning
-      }
+    media.setOnEndOfMedia(() -> {
+      media.seek(Duration.ZERO); // reset playback position to the beginning
+      media.play(); // start playing from the beginning
     });
+    media.setVolume(0.1);
     media.play();
   }
 

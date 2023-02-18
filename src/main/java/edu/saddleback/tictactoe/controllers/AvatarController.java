@@ -38,12 +38,11 @@ public class AvatarController {
     player1 = new Player("Player 1");
     player2 = new Player("Player 2");
     media = new MediaPlayer(new Media(Game.class.getResource("audio/selection.mp3").toString()));
-    media.setOnEndOfMedia(new Runnable() {
-      public void run() {
-        media.seek(Duration.ZERO); // reset playback position to the beginning
-        media.play(); // start playing from the beginning
-      }
+    media.setOnEndOfMedia(() -> {
+      media.seek(Duration.ZERO); // reset playback position to the beginning
+      media.play(); // start playing from the beginning
     });
+    media.setVolume(0.1);
     media.play();
   }
 
