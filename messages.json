@@ -1,0 +1,137 @@
+[
+  // subscriptions
+  {
+    "request": {
+      "event": "list_games"
+    },
+    "response": {
+      "success": true,
+      "message": "Game list.",
+      "games": [
+        {
+          "game_lobby_id": 10
+        },
+        {
+          "game_lobby_id": 4
+        }
+      ]
+    }
+  },
+  // user events
+  {
+    "request": {
+      "event": "create_game",
+      "username": "puwya"
+    },
+    "response": {
+      "success": true,
+      "message": "Game created. || Game not created.",
+      "game_lobby_id": 10
+    }
+  },
+  {
+    "request": {
+      "event": "join_game",
+      "game_lobby_id": 10,
+      "username": "homi"
+    },
+    "response": {
+      "success": true,
+      "message": "Game joined. || Unable to join game.",
+      "host_username": "puwya"
+    }
+  },
+  {
+    "request": {
+      "event": "player_ready"
+    },
+    "response": {
+      "success": true,
+      "message": "Status updated."
+    }
+  },
+  {
+    "request": {
+      "event": "player_info_changed",
+      "avatar_selected": "Bison"
+    },
+    "response": {
+      "success": true,
+      "message": "Received."
+    }
+  },
+  {
+    "request": {
+      "event": "player_info_confirmed",
+      "player_username": "homi",
+      "avatar_selected": "Bison"
+    },
+    "response": {
+      "success": true,
+      "message": "Received."
+    }
+  },
+  {
+    "request": {
+      "event": "make_move",
+      "row": 0,
+      "col": 1
+    },
+    "response": {
+      "success": true,
+      "message": "Received."
+    }
+  },
+  // server events
+  {
+    "request": {
+      "event": "player_joined",
+      "player_username": "homi"
+    },
+    "response": {
+      "success": true,
+      "message": "Received."
+    }
+  },
+  {
+    "request": {
+      "event": "avatar_selection_started",
+      "player_username": "homi"
+    },
+    "response": {
+      "success": true,
+      "message": "Received."
+    }
+  },
+  {
+    "request": {
+      "event": "game_started",
+      "success": false
+    },
+    "response": {
+      "success": true,
+      "message": "Received."
+    }
+  },
+  {
+    "request": {
+      "event": "game_ended",
+      "result_message": "You lose. || You win."
+    },
+    "response": {
+      "success": true,
+      "message": "Play again. || Back to main menu."
+    }
+  },
+  // server errors
+  {
+    "request": {
+      "event": "error_same_avatar || error_player_left || error_game_canceled",
+      "error_code": "Recoverable || Unrecoverable"
+    },
+    "response": {
+      "success": true,
+      "message": "Received."
+    }
+  }
+]
