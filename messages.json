@@ -1,4 +1,5 @@
 [
+  // user events
   // subscriptions
   {
     "request": {
@@ -7,17 +8,10 @@
     "response": {
       "success": true,
       "message": "Game list.",
-      "games": [
-        {
-          "game_lobby_id": 10
-        },
-        {
-          "game_lobby_id": 4
-        }
-      ]
+      "games": [10, 4]
     }
   },
-  // user events
+  // subscriptions
   {
     "request": {
       "event": "create_game",
@@ -47,7 +41,7 @@
     },
     "response": {
       "success": true,
-      "message": "Status updated."
+      "message": "Received."
     }
   },
   {
@@ -77,6 +71,7 @@
       "row": 0,
       "col": 1
     },
+    // break up
     "response": {
       "success": true,
       "message": "Received."
