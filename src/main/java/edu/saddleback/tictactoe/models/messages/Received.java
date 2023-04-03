@@ -6,11 +6,6 @@ public class Received extends Message {
     this.success = success;
   }
 
-  public Received(boolean success, String message) {
-    super(MessageType.Received, message);
-    this.success = success;
-  }
-
   public boolean isSuccess() {
     return success;
   }

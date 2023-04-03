@@ -7,11 +7,6 @@ public class Message implements Serializable {
     this.type = type;
   }
 
-  public Message(MessageType type, String message) {
-    this.type = type;
-    this.message = message;
-  }
-
   public MessageType getType() {
     return type;
   }
@@ -20,14 +15,5 @@ public class Message implements Serializable {
     this.type = type;
   }
 
-  public String getMessage() {
-    return message;
-  }
-
-  public void setMessage(String message) {
-    this.message = message;
-  }
-
   private MessageType type = null;
-  private String message = null;
 }
