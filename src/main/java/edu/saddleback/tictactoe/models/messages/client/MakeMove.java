@@ -5,17 +5,17 @@ import edu.saddleback.tictactoe.models.messages.MessageType;
 import javafx.util.Pair;
 
 public class MakeMove extends Message {
-  public MakeMove(int row, int column) {
+  public MakeMove(int row, int col) {
     super(MessageType.MakeMove);
-    this.tile = new Pair<Integer, Integer>(row, column);
+    tile = new Pair<Integer, Integer>(row, col);
   }
 
   public Pair<Integer, Integer> getTile() {
-    return this.tile;
+    return tile;
   }
 
-  public void setTitle(int row, int column) {
-    this.tile = new Pair<Integer, Integer>(row, column);
+  public void setTitle(int row, int col) {
+    tile = new Pair<Integer, Integer>(row, col);
   }
 
   private Pair<Integer, Integer> tile = null;

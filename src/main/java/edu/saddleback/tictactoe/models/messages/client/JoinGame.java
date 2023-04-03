@@ -27,5 +27,5 @@ public class JoinGame extends Message {
   }
 
   private String username = null;
-  private int gameLobbyId;
+  private int gameLobbyId = 0;
 }

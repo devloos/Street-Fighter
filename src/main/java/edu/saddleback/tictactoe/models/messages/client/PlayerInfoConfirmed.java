@@ -11,7 +11,7 @@ public class PlayerInfoConfirmed extends Message {
   }
 
   public String getUsername() {
-    return this.username;
+    return username;
   }
 
   public void setUsername(String username) {
@@ -19,7 +19,7 @@ public class PlayerInfoConfirmed extends Message {
   }
 
   public String getAvatarSelected() {
-    return this.avatarSelected;
+    return avatarSelected;
   }
 
   public void setAvatarSelected(String avatarSelected) {

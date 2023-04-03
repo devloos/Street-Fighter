@@ -10,7 +10,7 @@ public class PlayerInfoChanged extends Message {
   }
 
   public String getAvatarSelected() {
-    return this.avatarSelected;
+    return avatarSelected;
   }
 
   public void setAvatarSelected(String avatarSelected) {
