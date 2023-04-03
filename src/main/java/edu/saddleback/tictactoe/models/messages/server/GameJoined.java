@@ -4,18 +4,18 @@ import edu.saddleback.tictactoe.models.messages.Message;
 import edu.saddleback.tictactoe.models.messages.MessageType;
 
 public class GameJoined extends Message {
-  public GameJoined(String host_username) {
+  public GameJoined(String hostUsername) {
     super(MessageType.GameJoined);
-    this.host_username = host_username;
+    this.hostUsername = hostUsername;
   }
 
   public String getHostUsername() {
-    return host_username;
+    return hostUsername;
   }
 
-  public void setHostUsername(String host_username) {
-    this.host_username = host_username;
+  public void setHostUsername(String hostUsername) {
+    this.hostUsername = hostUsername;
   }
 
-  private String host_username = null;
+  private String hostUsername = null;
 }
