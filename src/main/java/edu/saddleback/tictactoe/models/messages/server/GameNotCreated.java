@@ -4,7 +4,7 @@ import edu.saddleback.tictactoe.models.messages.Message;
 import edu.saddleback.tictactoe.models.messages.MessageType;
 
 public class GameNotCreated extends Message {
-  GameNotCreated() {
+  public GameNotCreated() {
     super(MessageType.GameNotCreated);
   }
 }

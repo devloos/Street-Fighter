@@ -4,7 +4,7 @@ import edu.saddleback.tictactoe.models.messages.Message;
 import edu.saddleback.tictactoe.models.messages.MessageType;
 
 public class GameNotJoinable extends Message {
-  GameNotJoinable() {
+  public GameNotJoinable() {
     super(MessageType.GameNotjoinable);
   }
 }

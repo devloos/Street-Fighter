@@ -4,18 +4,18 @@ import edu.saddleback.tictactoe.models.messages.Message;
 import edu.saddleback.tictactoe.models.messages.MessageType;
 
 public class GameCreated extends Message {
-  GameCreated(int game_lobby_id) {
+  public GameCreated(int gameLobbyId) {
     super(MessageType.GameCreated);
-    this.game_lobby_id = game_lobby_id;
+    this.gameLobbyId = gameLobbyId;
   }
 
   public int getGameLobbyId() {
-    return game_lobby_id;
+    return gameLobbyId;
   }
 
-  public void setGameLobbyId(int game_lobby_id) {
-    this.game_lobby_id = game_lobby_id;
+  public void setGameLobbyId(int gameLobbyId) {
+    this.gameLobbyId = gameLobbyId;
   }
 
-  private int game_lobby_id;
+  private int gameLobbyId = 0;
 }

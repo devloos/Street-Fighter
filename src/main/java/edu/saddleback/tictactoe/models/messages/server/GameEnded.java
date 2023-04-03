@@ -17,6 +17,6 @@ public class GameEnded extends Message {
   public void setGameResult(GameResult result) {
     this.result = result;
   }
-  
-  private GameResult result;
+
+  private GameResult result = null;
 }

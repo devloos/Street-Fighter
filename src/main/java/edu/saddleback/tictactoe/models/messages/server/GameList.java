@@ -6,18 +6,18 @@ import edu.saddleback.tictactoe.models.messages.Message;
 import edu.saddleback.tictactoe.models.messages.MessageType;
 
 public class GameList extends Message {
-  GameList(ArrayList<Integer> lobby_ids) {
+  public GameList(ArrayList<Integer> lobbyIds) {
     super(MessageType.GameList);
-    this.lobby_ids = lobby_ids;
+    this.lobbyIds = lobbyIds;
   }
 
   public ArrayList<Integer> getLobbyIds() {
-    return lobby_ids;
+    return lobbyIds;
   }
 
-  public void setLobbyIds(ArrayList<Integer> lobby_ids) {
-    this.lobby_ids = lobby_ids;
+  public void setLobbyIds(ArrayList<Integer> lobbyIds) {
+    this.lobbyIds = lobbyIds;
   }
-  
-  private ArrayList<Integer> lobby_ids = null;
+
+  private ArrayList<Integer> lobbyIds = null;
 }
