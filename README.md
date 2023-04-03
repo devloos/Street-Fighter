@@ -11,13 +11,13 @@ https://maven.apache.org/install.html
 **Clone Git Repository**
 
 ```
-$ git clone git@github.com:Puwya/Java-Tic-Tac-Toe.git
+$ git clone git@github.com:devloos/Street-Fighter.git
 ```
 
 **Build Project with Maven**
 
 ```
-$ cd Java-Tic-Tac-Toe
+$ cd Street-Fighter
 $ mvn install
 ```
 
