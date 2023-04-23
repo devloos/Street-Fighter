@@ -1,10 +1,9 @@
-package edu.saddleback.tictactoe.controllers;
-
-import edu.saddleback.tictactoe.Game;
-import edu.saddleback.tictactoe.services.LoginService;
+package edu.st.client.controllers;
 
 import java.util.ArrayList;
 
+import edu.st.client.Game;
+import edu.st.client.services.LoginService;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;

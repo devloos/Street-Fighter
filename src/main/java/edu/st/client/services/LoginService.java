@@ -1,12 +1,13 @@
-package edu.saddleback.tictactoe.services;
-
-import edu.saddleback.tictactoe.Game;
+package edu.st.client.services;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import edu.st.client.Game;
+
 import java.util.Random;
 
 import javafx.scene.image.Image;

@@ -1,6 +1,6 @@
-package edu.saddleback.tictactoe.services;
+package edu.st.client.services;
 
-import edu.saddleback.tictactoe.models.Player;
+import edu.st.client.models.Player;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.effect.DropShadow;

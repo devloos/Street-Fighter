@@ -1,10 +1,10 @@
-package edu.saddleback.tictactoe.controllers;
+package edu.st.client.controllers;
 
 import java.io.IOException;
 import java.net.URL;
 
-import edu.saddleback.tictactoe.Game;
-import edu.saddleback.tictactoe.models.Player;
+import edu.st.client.Game;
+import edu.st.client.models.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

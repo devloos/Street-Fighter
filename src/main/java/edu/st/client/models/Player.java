@@ -1,4 +1,4 @@
-package edu.saddleback.tictactoe.models;
+package edu.st.client.models;
 
 import java.net.URL;
 
