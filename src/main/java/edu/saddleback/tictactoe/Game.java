@@ -2,6 +2,9 @@ package edu.saddleback.tictactoe;
 
 import java.io.IOException;
 
+import com.dep.common.messages.Message;
+import com.dep.common.messages.MessageType;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,6 +18,7 @@ public class Game extends Application {
   public void start(Stage window) throws Exception {
     window.setTitle("Tic Tac Toe");
     window.setResizable(false);
+    Message message = new Message(MessageType.NEWNEW);
 
     FXMLLoader loader = new FXMLLoader(Game.class.getResource(FXML_FILE));
 

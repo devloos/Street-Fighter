@@ -1,6 +1,5 @@
 ## Setup
 
-
 **Install Maven**
 https://maven.apache.org/install.html
 
@@ -15,6 +14,8 @@ $ git clone git@github.com:devloos/Street-Fighter.git
 ```
 
 **Build Project with Maven**
+
+- Make sure you build dependencies for common
 
 ```
 $ cd Street-Fighter
