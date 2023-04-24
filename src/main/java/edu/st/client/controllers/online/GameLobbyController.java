@@ -44,7 +44,7 @@ public class GameLobbyController {
 
   @FXML
   public void initialize() {
-    ClientThread thread = new ClientThread(socket, this, gameList);
+    ClientThread thread = new ClientThread(socket, this);
     thread.start();
 
     createGamebtn.setOnAction(event -> {

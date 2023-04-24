@@ -3,28 +3,17 @@ package edu.st.client;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.ArrayList;
 
 import edu.st.client.controllers.online.GameLobbyController;
 import edu.st.common.messages.Message;
 import edu.st.common.messages.Packet;
 import edu.st.common.messages.server.GameList;
-import edu.st.common.models.Game;
 import edu.st.common.serialize.SerializerFactory;
-import javafx.scene.control.ListView;
-import javafx.scene.layout.HBox;
-import javafx.concurrent.Task;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 
 public class ClientThread extends Thread {
-  public ClientThread(Socket socket, GameLobbyController lobby, ListView<HBox> gameList) {
+  public ClientThread(Socket socket, GameLobbyController lobby) {
     this.socket = socket;
-    this.gameList = gameList;
     this.lobby = lobby;
   }
 
@@ -62,5 +51,4 @@ public class ClientThread extends Thread {
 
   private Socket socket = null;
   private GameLobbyController lobby = null;
-  private ListView<HBox> gameList = null;
 }
