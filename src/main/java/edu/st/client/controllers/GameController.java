@@ -55,8 +55,8 @@ public class GameController {
     return_btn.setOnAction(event -> {
       try {
         FXMLLoader loader = new FXMLLoader(Game.class.getResource("views/Login.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         AnchorPane pane = loader.<AnchorPane>load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         media.stop();
         stage.getScene().setRoot(pane);
       } catch (IOException e) {

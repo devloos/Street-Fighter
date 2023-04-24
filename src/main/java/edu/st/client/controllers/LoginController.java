@@ -63,7 +63,15 @@ public class LoginController {
     });
 
     online_btn.setOnAction(event -> {
-      overlay.setVisible(true);
+      try {
+        FXMLLoader loader = new FXMLLoader(Game.class.getResource("views/GameLobby.fxml"));
+        AnchorPane pane = loader.<AnchorPane>load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        media.stop();
+        stage.getScene().setRoot(pane);
+      } catch (Exception e) {
+        System.out.println(e);
+      }
     });
   }
 
