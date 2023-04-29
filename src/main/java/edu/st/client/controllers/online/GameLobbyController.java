@@ -31,9 +31,9 @@ public class GameLobbyController {
       this.output = new PrintWriter(socket.getOutputStream(), true);
 
       ArrayList<String> channels = new ArrayList<>();
-      channels.add("/subscribe/gamelist");
+      channels.add("/gamelist");
       Subscribe subscribe = new Subscribe(channels);
-      Packet<Subscribe> packet = new Packet<Subscribe>(subscribe, "/subscribe");
+      Packet<Subscribe> packet = new Packet<Subscribe>(subscribe, "/" + this.socket);
 
       String serializedMsg = SerializerFactory.getSerializer().serialize(packet);
       output.println(serializedMsg);
@@ -69,11 +69,21 @@ public class GameLobbyController {
     gameList.getItems().clear();
     for (Game game : games) {
       HBox hbox = new HBox();
+      hbox.setStyle("-fx-padding: 5px;");
       hbox.setAlignment(Pos.CENTER);
       hbox.setSpacing(100);
-      hbox.getChildren().add(new Label("Game ID: " + game.getGameId()));
-      hbox.getChildren().add(new Label("Host: " + game.getHostname()));
-      hbox.getChildren().add(new Button("Join Game"));
+
+      Label gameIdLabel = new Label("Game ID: " + game.getGameId());
+      gameIdLabel.getStyleClass().add("label");
+      hbox.getChildren().add(gameIdLabel);
+
+      Label hostLabel = new Label("Host: " + game.getHostname());
+      hostLabel.getStyleClass().add("label");
+      hbox.getChildren().add(hostLabel);
+
+      Button btnJoin = new Button("Join Game");
+      btnJoin.getStyleClass().add("btn");
+      hbox.getChildren().add(btnJoin);
 
       gameList.getItems().add(hbox);
     }

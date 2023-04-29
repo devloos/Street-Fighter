@@ -12,28 +12,31 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.st.client.controllers.online.GameLobbyController">
    <children>
-      <ImageView fitHeight="480.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="false">
+      <ImageView fitHeight="480.0" fitWidth="640.0" pickOnBounds="true">
          <image>
-            <Image url="@../images/selection.gif" />
+            <Image url="@../images/game-lobby.jpg" />
          </image>
          <viewport>
-            <Rectangle2D height="480.0" width="640.0" />
+            <Rectangle2D height="480.0" minX="700.0" minY="300.0" width="640.0" />
          </viewport>
       </ImageView>
-      <ListView fx:id="gameList" layoutX="38.0" layoutY="95.0" prefHeight="290.0" prefWidth="565.0" />
-      <Button fx:id="createGamebtn" layoutX="219.0" layoutY="396.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="203.0" styleClass="btn" stylesheets="@../css/online/game-lobby.css" text="Create New Game">
+      <ListView fx:id="gameList" layoutX="38.0" layoutY="95.0" prefHeight="290.0" prefWidth="565.0" stylesheets="@../css/online/game-lobby.css" />
+      <Button fx:id="createGamebtn" layoutX="219.0" layoutY="396.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="203.0" styleClass="btn" stylesheets="@../css/online/game-lobby.css" text="Create New Game" textFill="#c3c3c3">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="gameId" layoutX="38.0" layoutY="53.0" prefHeight="35.0" prefWidth="270.0" />
-      <Label layoutX="38.0" layoutY="14.0" prefHeight="35.0" prefWidth="149.0" text="Game Name">
+      <TextField fx:id="gameId" layoutX="38.0" layoutY="53.0" prefHeight="35.0" prefWidth="270.0" styleClass="text-field" stylesheets="@../css/online/game-lobby.css">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font></TextField>
+      <Label layoutX="38.0" layoutY="14.0" prefHeight="35.0" prefWidth="149.0" text="Game Name" textFill="#c2c2c2">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>
       </Label>
-      <TextField fx:id="hostname" layoutX="333.0" layoutY="53.0" prefHeight="35.0" prefWidth="270.0" />
-      <Label layoutX="445.0" layoutY="14.0" prefHeight="35.0" prefWidth="158.0" text="Host Name">
+      <TextField fx:id="hostname" layoutX="333.0" layoutY="53.0" prefHeight="35.0" prefWidth="270.0" styleClass="text-field" stylesheets="@../css/online/game-lobby.css" />
+      <Label layoutX="445.0" layoutY="14.0" prefHeight="35.0" prefWidth="158.0" text="Host Name" textFill="#c3c3c3">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>

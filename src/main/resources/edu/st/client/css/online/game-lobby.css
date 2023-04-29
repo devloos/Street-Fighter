@@ -1,5 +1,5 @@
 .btn {
-  -fx-background-color: rgb(92, 38, 38);
+  -fx-background-color: #3c281b;
   -fx-text-fill: white;
   -fx-cursor: hand;
   -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 1), 10, 0.2, 0, 5);
@@ -9,4 +9,39 @@
 .btn:pressed {
   -fx-effect: none;
   -fx-translate-y: 2;
+}
+
+.label {
+  -fx-text-fill: white;
+}
+
+.text-field {
+  -fx-background-color: #3c281b;
+  -fx-border-color: #3d1d06;
+  -fx-border-width: 1px;
+  -fx-border-radius: 3px;
+  -fx-padding: 5px;
+  -fx-text-fill: white;
+}
+
+.list-view {
+  -fx-background-color: #3c240c;
+  -fx-border-color: #241506;
+}
+
+.list-cell {
+  -fx-background-color: transparent;
+  -fx-text-fill: #333333;
+}
+
+.list-cell:hover {
+  -fx-background-color: #3c240c;
+}
+
+.list-cell:even {
+  -fx-background-color: #2f200f;
+}
+
+.list-cell:odd {
+  -fx-background-color: #322210;
 }

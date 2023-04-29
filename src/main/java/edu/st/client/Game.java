@@ -2,8 +2,6 @@ package edu.st.client;
 
 import java.io.IOException;
 
-import edu.st.common.messages.Message;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
