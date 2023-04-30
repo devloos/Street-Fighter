@@ -3,7 +3,7 @@ package edu.st.client.controllers;
 import java.io.IOException;
 import java.net.URL;
 
-import edu.st.client.Game;
+import edu.st.client.Main;
 import edu.st.client.models.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +19,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Duration;
 
 public class AvatarController {
@@ -37,7 +38,7 @@ public class AvatarController {
   public AvatarController() {
     player1 = new Player("Player 1");
     player2 = new Player("Player 2");
-    media = new MediaPlayer(new Media(Game.class.getResource("audio/selection.mp3").toString()));
+    media = new MediaPlayer(new Media(Main.class.getResource("audio/selection.mp3").toString()));
     media.setOnEndOfMedia(() -> {
       media.seek(Duration.ZERO); // reset playback position to the beginning
       media.play(); // start playing from the beginning
@@ -79,7 +80,7 @@ public class AvatarController {
 
     // set functionality for player name as well
     String avatarStr = tile.getId().substring(0, tile.getId().length() - 2);
-    URL avatarPath = Game.class.getResource("images/avatars/" + avatarStr + ".jpg");
+    URL avatarPath = Main.class.getResource("images/avatars/" + avatarStr + ".jpg");
     player1.setAvatarPath(avatarPath);
   }
 
@@ -109,7 +110,7 @@ public class AvatarController {
 
     // set functionality for player name as well
     String avatarStr = tile.getId().substring(0, tile.getId().length() - 2);
-    URL avatarPath = Game.class.getResource("images/avatars/" + avatarStr + ".jpg");
+    URL avatarPath = Main.class.getResource("images/avatars/" + avatarStr + ".jpg");
     player2.setAvatarPath(avatarPath);
   }
 
@@ -136,9 +137,9 @@ public class AvatarController {
       player2.setName(p2TextField.getText());
     }
 
-    FXMLLoader loader = new FXMLLoader(Game.class.getResource("views/Game.fxml"));
+    FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/Game.fxml"));
     loader.setController(new GameController(player1, player2));
-    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    Stage stage = (Stage) Window.getWindows().get(0);
     AnchorPane pane = loader.<AnchorPane>load();
     media.stop();
     stage.getScene().setRoot(pane);

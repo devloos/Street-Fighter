@@ -50,7 +50,7 @@
                     <execution>
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>edu.st.client.Game</mainClass>
+                            <mainClass>edu.st.client.Main</mainClass>
                         </configuration>
                     </execution>
                 </executions>

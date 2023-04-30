@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class Game extends Application {
+public class Main extends Application {
   public static final String FXML_FILE = "views/Login.fxml";
 
   @Override
@@ -16,7 +16,7 @@ public class Game extends Application {
     window.setTitle("Tic Tac Toe");
     window.setResizable(false);
 
-    FXMLLoader loader = new FXMLLoader(Game.class.getResource(FXML_FILE));
+    FXMLLoader loader = new FXMLLoader(Main.class.getResource(FXML_FILE));
 
     try {
       AnchorPane pane = loader.<AnchorPane>load();

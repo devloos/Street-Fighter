@@ -8,13 +8,15 @@ import java.net.Socket;
 import edu.st.client.controllers.online.GameLobbyController;
 import edu.st.common.messages.Message;
 import edu.st.common.messages.Packet;
+import edu.st.common.messages.server.GameJoined;
 import edu.st.common.messages.server.GameList;
+import edu.st.common.messages.server.PlayerJoined;
 import edu.st.common.serialize.SerializerFactory;
 
 public class ClientThread extends Thread {
-  public ClientThread(Socket socket, GameLobbyController lobby) {
+  public ClientThread(Socket socket, GameLobbyController gameLobby) {
     this.socket = socket;
-    this.lobby = lobby;
+    this.gameLobby = gameLobby;
   }
 
   @Override
@@ -39,7 +41,17 @@ public class ClientThread extends Thread {
 
         if (message.getType().contains("GameList")) {
           GameList gameListMsg = (GameList) message;
-          this.lobby.setGameList(gameListMsg.getGames());
+          this.gameLobby.setGameList(gameListMsg.getGames());
+        }
+
+        if (message.getType().contains("PlayerJoined")) {
+          PlayerJoined playerJoined = (PlayerJoined) message;
+          this.gameLobby.gameStarted(playerJoined.getUsername());
+        }
+
+        if (message.getType().contains("GameJoined")) {
+          GameJoined gameJoined = (GameJoined) message;
+          this.gameLobby.gameStarted(gameJoined.getHostUsername());
         }
       }
     } catch (IOException e) {
@@ -50,5 +62,5 @@ public class ClientThread extends Thread {
   }
 
   private Socket socket = null;
-  private GameLobbyController lobby = null;
+  private GameLobbyController gameLobby = null;
 }

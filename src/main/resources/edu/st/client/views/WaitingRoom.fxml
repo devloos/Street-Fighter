@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+   prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19"
+   xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="585.0" fitWidth="764.0" layoutX="-49.0" pickOnBounds="true"
+         preserveRatio="true">
+         <image>
+            <Image url="@../images/waiting-room.gif" />
+         </image>
+         <viewport>
+            <Rectangle2D height="380.0" width="480.0" />
+         </viewport>
+      </ImageView>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="158.0" prefHeight="192.0"
+         prefWidth="344.0" text="Waiting for a player to join!" textAlignment="CENTER"
+         textFill="#794141">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Label>
+      <ProgressIndicator layoutX="294.0" layoutY="139.0" prefHeight="109.0" prefWidth="113.0" />
+   </children>
+</AnchorPane>

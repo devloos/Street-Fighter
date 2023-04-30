@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import edu.st.client.Game;
+import edu.st.client.Main;
 
 import java.util.Random;
 
@@ -14,7 +14,7 @@ import javafx.scene.image.Image;
 
 public class LoginService {
   public static void readBackgrounds(ArrayList<Image> backgrounds) {
-    String filePath = Game.class.getResource("data/backgrounds.db").getPath();
+    String filePath = Main.class.getResource("data/backgrounds.db").getPath();
     try {
       Scanner input = new Scanner(new File(filePath));
       while (input.hasNextLine()) {

@@ -3,7 +3,7 @@ package edu.st.client.controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import edu.st.client.Game;
+import edu.st.client.Main;
 import edu.st.client.models.Player;
 import edu.st.client.services.GameService;
 import javafx.fxml.FXML;
@@ -17,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Duration;
 
 public class GameController {
@@ -33,7 +34,7 @@ public class GameController {
     p1 = player1;
     p2 = player2;
     initBoard();
-    media = new MediaPlayer(new Media(Game.class.getResource("audio/vs.mp3").toString()));
+    media = new MediaPlayer(new Media(Main.class.getResource("audio/vs.mp3").toString()));
     media.setOnEndOfMedia(() -> {
       media.seek(Duration.ZERO); // reset playback position to the beginning
       media.play(); // start playing from the beginning
@@ -54,9 +55,9 @@ public class GameController {
 
     return_btn.setOnAction(event -> {
       try {
-        FXMLLoader loader = new FXMLLoader(Game.class.getResource("views/Login.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/Login.fxml"));
         AnchorPane pane = loader.<AnchorPane>load();
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) Window.getWindows().get(0);
         media.stop();
         stage.getScene().setRoot(pane);
       } catch (IOException e) {
