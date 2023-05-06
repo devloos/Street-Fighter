@@ -8,11 +8,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javafx.util.Pair;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.UUID;
+
 import edu.st.client.ClientThread;
 import edu.st.client.Main;
 import edu.st.common.messages.Packet;
@@ -20,6 +23,7 @@ import edu.st.common.messages.Subscribe;
 import edu.st.common.messages.client.CreateGame;
 import edu.st.common.messages.client.JoinGame;
 import edu.st.common.models.Game;
+import edu.st.common.models.GamePair;
 import edu.st.common.serialize.SerializerFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,7 +31,6 @@ import javafx.geometry.Pos;
 
 public class GameLobbyController {
   public ListView<HBox> gameList = null;
-  public TextField gamename = null;
   public TextField username = null;
   public Button createGamebtn = null;
 
@@ -58,11 +61,7 @@ public class GameLobbyController {
         return;
       }
 
-      if (gamename.getText().isEmpty()) {
-        return;
-      }
-
-      CreateGame message = new CreateGame(username.getText(), gamename.getText());
+      CreateGame message = new CreateGame(username.getText());
       Packet<CreateGame> packet = new Packet<CreateGame>(message, "/creategame");
       this.output.println(SerializerFactory.getSerializer().serialize(packet));
 
@@ -78,15 +77,15 @@ public class GameLobbyController {
     });
   }
 
-  public void setGameList(ArrayList<Game> games) {
+  public void setGameList(ArrayList<GamePair> games) {
     gameList.getItems().clear();
-    for (Game game : games) {
+    for (GamePair game : games) {
       HBox hbox = new HBox();
       hbox.setStyle("-fx-padding: 5px;");
       hbox.setAlignment(Pos.CENTER);
       hbox.setSpacing(90);
 
-      Label gameNameLabel = new Label("Game Name: " + game.getGamename());
+      Label gameNameLabel = new Label("Game ID: " + game.getGameId());
       gameNameLabel.getStyleClass().add("label");
       hbox.getChildren().add(gameNameLabel);
 

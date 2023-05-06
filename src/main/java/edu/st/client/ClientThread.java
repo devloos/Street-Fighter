@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 
 import edu.st.client.controllers.online.GameLobbyController;
+import edu.st.client.controllers.online.OnlineGameController;
 import edu.st.common.messages.Message;
 import edu.st.common.messages.Packet;
 import edu.st.common.messages.server.GameJoined;
