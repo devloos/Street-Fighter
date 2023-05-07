@@ -8,17 +8,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import javafx.util.Pair;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.UUID;
 
 import edu.st.client.Main;
+import edu.st.common.Util;
 import edu.st.common.messages.Message;
 import edu.st.common.messages.Packet;
 import edu.st.common.messages.Received;
@@ -27,10 +26,7 @@ import edu.st.common.messages.client.CreateGame;
 import edu.st.common.messages.client.JoinGame;
 import edu.st.common.messages.server.GameList;
 import edu.st.common.messages.server.GameStarted;
-import edu.st.common.messages.server.MoveMade;
-import edu.st.common.models.Game;
 import edu.st.common.models.GamePair;
-import edu.st.common.serialize.SerializerFactory;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,15 +40,11 @@ public class GameLobbyController {
   public GameLobbyController() {
     try {
       this.socket = new Socket(host, port);
-      this.output = new PrintWriter(socket.getOutputStream(), true);
 
       ArrayList<String> channels = new ArrayList<>();
       channels.add("/gamelist");
       Subscribe subscribe = new Subscribe(channels);
-      Packet<Subscribe> packet = new Packet<Subscribe>(subscribe, "/" + this.socket);
-
-      String serializedMsg = SerializerFactory.getSerializer().serialize(packet);
-      output.println(serializedMsg);
+      Util.println(socket, subscribe, this.socket.toString());
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -66,8 +58,7 @@ public class GameLobbyController {
       }
 
       CreateGame message = new CreateGame(username.getText());
-      Packet<CreateGame> packet = new Packet<CreateGame>(message, "/creategame");
-      this.output.println(SerializerFactory.getSerializer().serialize(packet));
+      Util.println(socket, message, "/creategame");
 
       try {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/WaitingRoom.fxml"));
@@ -85,14 +76,14 @@ public class GameLobbyController {
           try {
             BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            while (flag) {
+            while (true) {
               String m = input.readLine();
 
               if (m == null) {
                 continue;
               }
 
-              Packet<Message> packet = SerializerFactory.getSerializer().deserialize(m);
+              Packet<Message> packet = Util.deserialize(m);
 
               if (packet == null) {
                 continue;
@@ -117,16 +108,15 @@ public class GameLobbyController {
 
               if (message.getType().contains("GameStarted")) {
                 GameStarted msg = (GameStarted) message;
-                flag = false;
                 Platform.runLater(() -> {
                   this.gameStarted(msg.getUsername(), msg.getGameId(), msg.isHost());
                 });
+                break;
               }
 
             }
+            System.out.println("NOT LISTENING ON THREAD" + Thread.currentThread());
           } catch (IOException e) {
-            e.printStackTrace();
-          } catch (ClassNotFoundException e) {
             e.printStackTrace();
           }
         });
@@ -157,8 +147,7 @@ public class GameLobbyController {
         }
 
         JoinGame message = new JoinGame(username.getText(), game.getGameId());
-        Packet<JoinGame> packet = new Packet<JoinGame>(message, "/joingame");
-        this.output.println(SerializerFactory.getSerializer().serialize(packet));
+        Util.println(socket, message, "/joingame");
       });
       hbox.getChildren().add(btnJoin);
 
@@ -181,8 +170,6 @@ public class GameLobbyController {
   }
 
   private Socket socket = null;
-  private PrintWriter output = null;
-  private boolean flag = true;
   public static final int port = 8000;
   public static final String host = "localhost";
 }

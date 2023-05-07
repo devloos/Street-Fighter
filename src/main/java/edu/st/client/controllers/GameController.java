@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import edu.st.client.Main;
 import edu.st.client.models.Player;
 import edu.st.client.services.GameService;
+import edu.st.common.Util;
 import edu.st.common.models.Token;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -91,9 +92,9 @@ public class GameController {
 
     updateBoard(tile, row, col);
 
-    if (isWinner()) {
+    if (Util.isWinner(board)) {
       overlay.setVisible(true);
-    } else if (isBoardFull()) {
+    } else if (Util.isBoardFull(board)) {
       overlay.setVisible(true);
     }
   }
@@ -118,58 +119,7 @@ public class GameController {
     }
   }
 
-  private boolean isWinner() {
-    Token t1 = null;
-    Token t2 = null;
-    Token t3 = null;
-    for (ArrayList<Token> row : board) {
-      t1 = row.get(0);
-      t2 = row.get(1);
-      t3 = row.get(2);
-
-      if (checkTiles(t1, t2, t3)) {
-        return true;
-      }
-    }
-
-    for (int col = 0; col < board.size(); ++col) {
-      t1 = board.get(0).get(col);
-      t2 = board.get(1).get(col);
-      t3 = board.get(2).get(col);
-
-      if (checkTiles(t1, t2, t3)) {
-        return true;
-      }
-    }
-
-    t1 = board.get(0).get(0);
-    t2 = board.get(1).get(1);
-    t3 = board.get(2).get(2);
-    if (checkTiles(t1, t2, t3)) {
-      return true;
-    }
-
-    t1 = board.get(0).get(2);
-    t2 = board.get(1).get(1);
-    t3 = board.get(2).get(0);
-    if (checkTiles(t1, t2, t3)) {
-      return true;
-    }
-
-    return false;
-  }
-
-  private boolean isBoardFull() {
-    for (ArrayList<Token> row : board) {
-      if (row.contains(null)) {
-        return false;
-      }
-    }
-    return true;
-  }
-
   private void resetGame() {
-
     // clear state
     for (ArrayList<Token> row : board) {
       for (int i = 0; i < row.size(); ++i) {
@@ -214,18 +164,6 @@ public class GameController {
         break;
       }
     }
-  }
-
-  private boolean checkTiles(Token t1, Token t2, Token t3) {
-    if (t1 == null || t2 == null || t3 == null) {
-      return false;
-    }
-
-    if (t1 == t2 && t2 == t3) {
-      return true;
-    }
-
-    return false;
   }
 
   private ArrayList<ArrayList<Token>> board = null;

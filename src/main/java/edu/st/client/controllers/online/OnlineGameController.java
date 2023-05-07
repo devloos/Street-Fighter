@@ -1,34 +1,29 @@
 package edu.st.client.controllers.online;
 
 import java.io.BufferedReader;
-import java.io.Console;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.UUID;
 
 import edu.st.client.Main;
 import edu.st.client.models.Player;
 import edu.st.client.services.GameService;
+import edu.st.common.Util;
 import edu.st.common.messages.Message;
 import edu.st.common.messages.Packet;
 import edu.st.common.messages.Received;
 import edu.st.common.messages.client.MakeMove;
 import edu.st.common.messages.server.MoveMade;
 import edu.st.common.models.Token;
-import edu.st.common.serialize.SerializerFactory;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.util.Pair;
 
 public class OnlineGameController {
   public AnchorPane overlay = null;
@@ -73,14 +68,14 @@ public class OnlineGameController {
           try {
             BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            while (flag) {
+            while (true) {
               String m = input.readLine();
 
               if (m == null) {
                 continue;
               }
 
-              Packet<Message> packet = SerializerFactory.getSerializer().deserialize(m);
+              Packet<Message> packet = Util.deserialize(m);
 
               if (packet == null) {
                 continue;
@@ -97,7 +92,6 @@ public class OnlineGameController {
               }
 
               if (message.getType().contains("MoveMade")) {
-                System.out.println("MoveMade");
                 MoveMade msg = (MoveMade) message;
                 Platform.runLater(() -> {
                   this.updateUI(msg.getRow(), msg.getCol());
@@ -105,8 +99,6 @@ public class OnlineGameController {
               }
             }
           } catch (IOException e) {
-            e.printStackTrace();
-          } catch (ClassNotFoundException e) {
             e.printStackTrace();
           }
         });
@@ -130,7 +122,12 @@ public class OnlineGameController {
       return;
     }
 
-    println(socket, new MakeMove(row, col), gameId.toString());
+    // tile is already taken
+    if (tile.getStyleClass().contains("tile-taken")) {
+      return;
+    }
+
+    Util.println(socket, new MakeMove(row, col), gameId.toString());
   }
 
   public void updateUI(Integer row, Integer col) {
@@ -175,20 +172,9 @@ public class OnlineGameController {
     }
   }
 
-  private void println(Socket socket, Message message, String channel) {
-    Packet<Message> packet = new Packet<Message>(message, channel);
-    try {
-      PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
-      output.println(SerializerFactory.getSerializer().serialize(packet));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
   private Player host = null;
   private Player player = null;
   private Socket socket = null;
   private UUID gameId = null;
   private Token currentPlayer = Token.X;
-  private boolean flag = true;
 }
