@@ -10,21 +10,28 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.Pair;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import edu.st.client.ClientThread;
 import edu.st.client.Main;
+import edu.st.common.messages.Message;
 import edu.st.common.messages.Packet;
+import edu.st.common.messages.Received;
 import edu.st.common.messages.Subscribe;
 import edu.st.common.messages.client.CreateGame;
 import edu.st.common.messages.client.JoinGame;
+import edu.st.common.messages.server.GameList;
+import edu.st.common.messages.server.GameStarted;
+import edu.st.common.messages.server.MoveMade;
 import edu.st.common.models.Game;
 import edu.st.common.models.GamePair;
 import edu.st.common.serialize.SerializerFactory;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -53,9 +60,6 @@ public class GameLobbyController {
 
   @FXML
   public void initialize() {
-    ClientThread thread = new ClientThread(socket, this);
-    thread.start();
-
     createGamebtn.setOnAction(event -> {
       if (username.getText().isEmpty()) {
         return;
@@ -75,6 +79,58 @@ public class GameLobbyController {
         e.printStackTrace();
       }
     });
+
+    Thread thread = new Thread(
+        () -> {
+          try {
+            BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+            while (flag) {
+              String m = input.readLine();
+
+              if (m == null) {
+                continue;
+              }
+
+              Packet<Message> packet = SerializerFactory.getSerializer().deserialize(m);
+
+              if (packet == null) {
+                continue;
+              }
+
+              Message message = packet.getMessage();
+
+              if (message.getType().contains("Received")) {
+                Received msg = (Received) message;
+
+                if (!msg.isSuccess()) {
+                  continue;
+                }
+              }
+
+              if (message.getType().contains("GameList")) {
+                GameList gameListMsg = (GameList) message;
+                Platform.runLater(() -> {
+                  this.setGameList(gameListMsg.getGames());
+                });
+              }
+
+              if (message.getType().contains("GameStarted")) {
+                GameStarted msg = (GameStarted) message;
+                flag = false;
+                Platform.runLater(() -> {
+                  this.gameStarted(msg.getUsername(), msg.getGameId(), msg.isHost());
+                });
+              }
+
+            }
+          } catch (IOException e) {
+            e.printStackTrace();
+          } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+          }
+        });
+    thread.start();
   }
 
   public void setGameList(ArrayList<GamePair> games) {
@@ -110,21 +166,23 @@ public class GameLobbyController {
     }
   }
 
-  public void gameStarted(String playerUsername) {
+  public void gameStarted(String playerUsername, UUID gameId, boolean isHost) {
+    String hostName = isHost ? username.getText() : playerUsername;
+    String userName = !isHost ? username.getText() : playerUsername;
     try {
       FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/OnlineGame.fxml"));
-      loader.setController(new OnlineGameController(username.getText(), playerUsername));
+      loader.setController(new OnlineGameController(hostName, userName, socket, gameId));
       Stage stage = (Stage) Window.getWindows().get(0);
       AnchorPane pane = loader.<AnchorPane>load();
       stage.getScene().setRoot(pane);
     } catch (IOException e) {
       e.printStackTrace();
     }
-
   }
 
   private Socket socket = null;
   private PrintWriter output = null;
+  private boolean flag = true;
   public static final int port = 8000;
   public static final String host = "localhost";
 }

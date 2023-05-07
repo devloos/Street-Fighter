@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import edu.st.client.Main;
 import edu.st.client.models.Player;
 import edu.st.client.services.GameService;
+import edu.st.common.models.Token;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -232,8 +233,4 @@ public class GameController {
   private Player p2 = null;
   private Token currentPlayer = Token.X;
   private MediaPlayer media = null;
-
-  private enum Token {
-    X, Y
-  };
 }
