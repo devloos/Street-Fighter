@@ -14,10 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
 
 public class AvatarController extends BaseController {
   // fxml properties
@@ -35,13 +32,8 @@ public class AvatarController extends BaseController {
   public AvatarController() {
     player1 = new Player("Player 1");
     player2 = new Player("Player 2");
-    media = new MediaPlayer(new Media(Main.class.getResource("audio/selection.mp3").toString()));
-    media.setOnEndOfMedia(() -> {
-      media.seek(Duration.ZERO); // reset playback position to the beginning
-      media.play(); // start playing from the beginning
-    });
-    media.setVolume(0.1);
-    media.play();
+    FxService.setMedia("audio/selection.mp3");
+    FxService.playMedia();
   }
 
   @FXML
@@ -135,10 +127,8 @@ public class AvatarController extends BaseController {
     }
 
     FxService.switchViews("views/Game.fxml", new GameController(player1, player2));
-    media.stop();
   }
 
   private Player player1 = null;
   private Player player2 = null;
-  private MediaPlayer media = null;
 }
