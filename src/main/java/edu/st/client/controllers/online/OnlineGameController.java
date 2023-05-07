@@ -9,12 +9,14 @@ import java.util.UUID;
 import edu.st.client.Main;
 import edu.st.client.controllers.BaseController;
 import edu.st.client.models.Player;
+import edu.st.client.services.FxService;
 import edu.st.client.services.GameService;
 import edu.st.common.Util;
 import edu.st.common.messages.Message;
 import edu.st.common.messages.Packet;
 import edu.st.common.messages.Received;
 import edu.st.common.messages.client.MakeMove;
+import edu.st.common.messages.server.GameEnded;
 import edu.st.common.messages.server.MoveMade;
 import edu.st.common.models.Token;
 import javafx.application.Platform;
@@ -51,18 +53,9 @@ public class OnlineGameController extends BaseController {
     // resetGame();
     // });
 
-    // return_btn.setOnAction(event -> {
-    // try {
-    // FXMLLoader loader = new
-    // FXMLLoader(Main.class.getResource("views/Login.fxml"));
-    // AnchorPane pane = loader.<AnchorPane>load();
-    // Stage stage = (Stage) Window.getWindows().get(0);
-    // media.stop();
-    // stage.getScene().setRoot(pane);
-    // } catch (IOException e) {
-    // System.out.println(e);
-    // }
-    // });
+    return_btn.setOnAction(event -> {
+      FxService.switchViews("views/Login.fxml", null);
+    });
 
     Thread thread = new Thread(
         () -> {
@@ -96,6 +89,14 @@ public class OnlineGameController extends BaseController {
                 MoveMade msg = (MoveMade) message;
                 Platform.runLater(() -> {
                   this.updateUI(msg.getRow(), msg.getCol());
+                });
+              }
+
+              if (message.getType().contains("GameEnded")) {
+                GameEnded msg = (GameEnded) message;
+                Platform.runLater(() -> {
+                  this.updateUI(msg.getRow(), msg.getCol());
+                  this.overlay.setVisible(true);
                 });
               }
             }

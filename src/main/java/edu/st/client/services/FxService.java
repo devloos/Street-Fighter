@@ -42,7 +42,7 @@ public class FxService {
   }
 
   public static void playMedia() {
-    mediaPlayer.play();
+    // mediaPlayer.play();
   }
 
   public static void stopMedia() {
