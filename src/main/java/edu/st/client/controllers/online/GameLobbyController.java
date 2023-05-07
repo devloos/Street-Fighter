@@ -104,7 +104,6 @@ public class GameLobbyController extends BaseController {
               }
 
             }
-            System.out.println("NOT LISTENING ON THREAD" + Thread.currentThread());
           } catch (IOException e) {
             e.printStackTrace();
           }

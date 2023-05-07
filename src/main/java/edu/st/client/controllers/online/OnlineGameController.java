@@ -15,7 +15,9 @@ import edu.st.common.Util;
 import edu.st.common.messages.Message;
 import edu.st.common.messages.Packet;
 import edu.st.common.messages.Received;
+import edu.st.common.messages.client.BackToMainMenu;
 import edu.st.common.messages.client.MakeMove;
+import edu.st.common.messages.client.PlayAgain;
 import edu.st.common.messages.server.GameEnded;
 import edu.st.common.messages.server.MoveMade;
 import edu.st.common.models.Token;
@@ -48,12 +50,15 @@ public class OnlineGameController extends BaseController {
     GameService.setPlayerProfile(profile1, host);
     GameService.setPlayerProfile(profile2, player);
 
-    // restart_btn.setOnAction(event -> {
-    // overlay.setVisible(false);
-    // resetGame();
-    // });
+    restart_btn.setOnAction(event -> {
+      Util.println(socket, new PlayAgain(), gameId.toString());
+      return_btn.setDisable(true);
+      restart_btn.setDisable(true);
+    });
 
     return_btn.setOnAction(event -> {
+      flag = false;
+      Util.println(socket, new BackToMainMenu(), gameId.toString());
       FxService.switchViews("views/Login.fxml", null);
     });
 
@@ -62,7 +67,7 @@ public class OnlineGameController extends BaseController {
           try {
             BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            while (true) {
+            while (flag) {
               String m = input.readLine();
 
               if (m == null) {
@@ -97,6 +102,22 @@ public class OnlineGameController extends BaseController {
                 Platform.runLater(() -> {
                   this.updateUI(msg.getRow(), msg.getCol());
                   this.overlay.setVisible(true);
+                });
+              }
+
+              if (message.getType().contains("PlayAgain")) {
+                Platform.runLater(() -> {
+                  this.overlay.setVisible(false);
+                  return_btn.setDisable(false);
+                  restart_btn.setDisable(false);
+                  this.resetGame();
+                });
+              }
+
+              if (message.getType().contains("BackToMainMenu")) {
+                Platform.runLater(() -> {
+                  flag = false;
+                  FxService.switchViews("views/Login.fxml", null);
                 });
               }
             }
@@ -174,9 +195,20 @@ public class OnlineGameController extends BaseController {
     }
   }
 
+  private void resetGame() {
+    // clear visuals
+    for (Node node : grid.getChildren()) {
+      GameService.resetTile((HBox) node);
+    }
+
+    // Player one starts again
+    setCurrentPlayer(Token.X);
+  }
+
   private Player host = null;
   private Player player = null;
   private Socket socket = null;
   private UUID gameId = null;
   private Token currentPlayer = Token.X;
+  private volatile boolean flag = true;
 }
