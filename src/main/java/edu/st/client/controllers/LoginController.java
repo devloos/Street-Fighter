@@ -3,12 +3,10 @@ package edu.st.client.controllers;
 import java.util.ArrayList;
 
 import edu.st.client.Main;
+import edu.st.client.services.FxService;
 import edu.st.client.services.LoginService;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
@@ -16,7 +14,7 @@ import javafx.util.Duration;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-public class LoginController {
+public class LoginController extends BaseController {
   // all fxml properties
   public Button online_btn = null;
   public Button single_player_btn = null;
@@ -51,27 +49,13 @@ public class LoginController {
     });
 
     multiplayer_btn.setOnAction(event -> {
-      try {
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/AvatarPicker.fxml"));
-        AnchorPane pane = loader.<AnchorPane>load();
-        Stage stage = (Stage) Window.getWindows().get(0);
-        media.stop();
-        stage.getScene().setRoot(pane);
-      } catch (Exception e) {
-        System.out.println(e);
-      }
+      FxService.switchViews("views/AvatarPicker.fxml", null);
+      media.stop();
     });
 
     online_btn.setOnAction(event -> {
-      try {
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/GameLobby.fxml"));
-        AnchorPane pane = loader.<AnchorPane>load();
-        Stage stage = (Stage) Window.getWindows().get(0);
-        media.stop();
-        stage.getScene().setRoot(pane);
-      } catch (Exception e) {
-        System.out.println(e);
-      }
+      FxService.switchViews("views/GameLobby.fxml", null);
+      media.stop();
     });
   }
 

@@ -1,15 +1,14 @@
 package edu.st.client.controllers;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import edu.st.client.Main;
 import edu.st.client.models.Player;
+import edu.st.client.services.FxService;
 import edu.st.client.services.GameService;
 import edu.st.common.Util;
 import edu.st.common.models.Token;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -18,11 +17,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 import javafx.util.Duration;
 
-public class GameController {
+public class GameController extends BaseController {
   // all fxml properties
   public AnchorPane overlay = null;
   public GridPane grid = null;
@@ -56,15 +53,8 @@ public class GameController {
     });
 
     return_btn.setOnAction(event -> {
-      try {
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/Login.fxml"));
-        AnchorPane pane = loader.<AnchorPane>load();
-        Stage stage = (Stage) Window.getWindows().get(0);
-        media.stop();
-        stage.getScene().setRoot(pane);
-      } catch (IOException e) {
-        System.out.println(e);
-      }
+      FxService.switchViews("views/Login.fxml", null);
+      media.stop();
     });
   }
 

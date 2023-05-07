@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.util.UUID;
 
 import edu.st.client.Main;
+import edu.st.client.controllers.BaseController;
 import edu.st.client.models.Player;
 import edu.st.client.services.GameService;
 import edu.st.common.Util;
@@ -25,7 +26,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
-public class OnlineGameController {
+public class OnlineGameController extends BaseController {
   public AnchorPane overlay = null;
   public GridPane grid = null;
   public AnchorPane profile1 = null;

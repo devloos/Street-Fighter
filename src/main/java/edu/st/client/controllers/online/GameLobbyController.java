@@ -4,10 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,7 +13,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import edu.st.client.Main;
+import edu.st.client.controllers.BaseController;
+import edu.st.client.services.FxService;
 import edu.st.common.Util;
 import edu.st.common.messages.Message;
 import edu.st.common.messages.Packet;
@@ -29,10 +27,9 @@ import edu.st.common.messages.server.GameStarted;
 import edu.st.common.models.GamePair;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 
-public class GameLobbyController {
+public class GameLobbyController extends BaseController {
   public ListView<HBox> gameList = null;
   public TextField username = null;
   public Button createGamebtn = null;
@@ -60,15 +57,7 @@ public class GameLobbyController {
       CreateGame message = new CreateGame(username.getText());
       Util.println(socket, message, "/creategame");
 
-      try {
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/WaitingRoom.fxml"));
-        loader.setController(this);
-        Stage stage = (Stage) Window.getWindows().get(0);
-        AnchorPane pane = loader.<AnchorPane>load();
-        stage.getScene().setRoot(pane);
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
+      FxService.switchViews("views/WaitingRoom.fxml", this);
     });
 
     Thread thread = new Thread(
@@ -158,15 +147,7 @@ public class GameLobbyController {
   public void gameStarted(String playerUsername, UUID gameId, boolean isHost) {
     String hostName = isHost ? username.getText() : playerUsername;
     String userName = !isHost ? username.getText() : playerUsername;
-    try {
-      FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/OnlineGame.fxml"));
-      loader.setController(new OnlineGameController(hostName, userName, socket, gameId));
-      Stage stage = (Stage) Window.getWindows().get(0);
-      AnchorPane pane = loader.<AnchorPane>load();
-      stage.getScene().setRoot(pane);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    FxService.switchViews("views/Game.fxml", new OnlineGameController(hostName, userName, socket, gameId));
   }
 
   private Socket socket = null;

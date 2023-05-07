@@ -1,13 +1,12 @@
 package edu.st.client.controllers;
 
-import java.io.IOException;
 import java.net.URL;
 
 import edu.st.client.Main;
 import edu.st.client.models.Player;
+import edu.st.client.services.FxService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -18,11 +17,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 import javafx.util.Duration;
 
-public class AvatarController {
+public class AvatarController extends BaseController {
   // fxml properties
   public HBox p1 = null;
   public HBox p2 = null;
@@ -115,7 +112,7 @@ public class AvatarController {
   }
 
   @FXML
-  public void switchToGameScreen(ActionEvent event) throws IOException {
+  public void switchToGameScreen(ActionEvent event) {
     if (player1.getAvatarPath() == null || player2.getAvatarPath() == null) {
       error_message.setText("PLEASE CHOOSE AN AVATAR!");
       error.setVisible(true);
@@ -137,12 +134,8 @@ public class AvatarController {
       player2.setName(p2TextField.getText());
     }
 
-    FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/Game.fxml"));
-    loader.setController(new GameController(player1, player2));
-    Stage stage = (Stage) Window.getWindows().get(0);
-    AnchorPane pane = loader.<AnchorPane>load();
+    FxService.switchViews("views/Game.fxml", new GameController(player1, player2));
     media.stop();
-    stage.getScene().setRoot(pane);
   }
 
   private Player player1 = null;
