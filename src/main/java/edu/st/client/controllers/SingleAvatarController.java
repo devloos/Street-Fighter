@@ -15,7 +15,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import edu.st.client.Main;
@@ -86,21 +85,20 @@ public class SingleAvatarController extends BaseController {
       player.setName(playerTextField.getText());
     }
 
-    // Thread thread = new Thread(
-    // () -> {
-    // try {
-    // Thread.sleep(700);
-    // Platform.runLater(() -> {
-    // cpuGenerateAvatar();
-    // });
-    // } catch (InterruptedException e) {
-    // e.printStackTrace();
-    // }
-    // });
-    // thread.start();
     cpuGenerateAvatar();
 
-    FxService.switchViews("views/Game.fxml", new SingleGameController(player, cpu));
+    Thread thread = new Thread(
+        () -> {
+          try {
+            Thread.sleep(2000);
+            Platform.runLater(() -> {
+              FxService.switchViews("views/Game.fxml", new SingleGameController(player, cpu));
+            });
+          } catch (InterruptedException e) {
+            e.printStackTrace();
+          }
+        });
+    thread.start();
   }
 
   private void cpuGenerateAvatar() {
@@ -116,6 +114,7 @@ public class SingleAvatarController extends BaseController {
     avatars.remove(avatarStr);
 
     String randAvatar = avatars.get(random.nextInt(avatars.size()));
+
     URL avatarPath = Main.class.getResource("images/avatars/" + randAvatar + ".jpg");
     cpu.setAvatarPath(avatarPath);
 
