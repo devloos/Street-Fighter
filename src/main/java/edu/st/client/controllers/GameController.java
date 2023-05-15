@@ -24,7 +24,6 @@ public class GameController extends BaseController {
   public Button restart_btn = null;
   public Button return_btn = null;
 
-  // we should take in two players here
   public GameController(Player player1, Player player2) {
     p1 = player1;
     p2 = player2;
