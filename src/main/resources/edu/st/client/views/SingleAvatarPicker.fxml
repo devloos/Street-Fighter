@@ -27,12 +27,12 @@
                <Rectangle2D height="480.0" width="640.0" />
             </viewport>
          </ImageView>
-         <TextField fx:id="playerTextField" alignment="BOTTOM_CENTER" layoutX="20.0" layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" styleClass="text">
+         <TextField fx:id="playerTextField" alignment="BOTTOM_CENTER" layoutX="20.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="156.0" styleClass="text">
             <font>
                <Font name="Arial Black" size="13.0" />
             </font>
          </TextField>
-         <Button fx:id="startGame" layoutX="21.0" layoutY="81.0" mnemonicParsing="false" onAction="#switchToGameScreen" prefHeight="29.0" prefWidth="100.0" styleClass="btn" text="Ready up">
+         <Button fx:id="startGame" layoutX="20.0" layoutY="115.0" mnemonicParsing="false" onAction="#switchToGameScreen" prefHeight="44.0" prefWidth="156.0" styleClass="btn" text="Ready up">
             <font>
                <Font name="Arial Black" size="13.0" />
             </font>
@@ -45,10 +45,9 @@
                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
@@ -131,7 +130,7 @@
                      <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
-               <HBox fx:id="Dhalsim" alignment="CENTER" GridPane.columnIndex="6">
+               <HBox fx:id="Dhalsim" alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2">
                   <children>
                      <ImageView fitHeight="60.0" fitWidth="60.0">
                         <image>
@@ -144,7 +143,7 @@
                      <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
-               <HBox fx:id="Fei_Long" alignment="CENTER" GridPane.columnIndex="7">
+               <HBox fx:id="Fei_Long" alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
                   <children>
                      <ImageView fx:id="feiLong" fitHeight="60.0" fitWidth="60.0">
                         <image>
@@ -235,7 +234,7 @@
                      <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
-               <HBox fx:id="Vega" alignment="CENTER" GridPane.columnIndex="6" GridPane.rowIndex="1">
+               <HBox fx:id="Vega" alignment="CENTER" GridPane.rowIndex="2">
                   <children>
                      <ImageView fx:id="vega" fitHeight="60.0" fitWidth="60.0">
                         <image>
@@ -248,7 +247,7 @@
                      <String fx:value="tile-active" />
                   </styleClass>
                </HBox>
-               <HBox fx:id="Zangief" alignment="CENTER" GridPane.columnIndex="7" GridPane.rowIndex="1">
+               <HBox fx:id="Zangief" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
                   <children>
                      <ImageView fx:id="zangief" fitHeight="60.0" fitWidth="60.0">
                         <image>
@@ -263,17 +262,17 @@
                </HBox>
             </children>
          </GridPane>
-         <HBox fx:id="p1" alignment="CENTER" layoutX="132.0" layoutY="26.0" prefHeight="153.0" prefWidth="200.0">
+         <HBox fx:id="p1" alignment="CENTER" layoutX="197.0" layoutY="26.0" prefHeight="153.0" prefWidth="247.0">
             <children>
-               <ImageView fx:id="p1StartImage" fitHeight="90.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+               <ImageView fx:id="p1StartImage" fitHeight="139.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true" />
             </children>
             <effect>
                <DropShadow />
             </effect>
          </HBox>
-         <HBox fx:id="p2" alignment="CENTER" layoutX="391.0" layoutY="53.0" prefHeight="100.0" prefWidth="200.0">
+         <HBox fx:id="p2" alignment="CENTER" layoutX="420.0" layoutY="26.0" prefHeight="153.0" prefWidth="200.0">
             <children>
-               <ImageView fx:id="p2StartImage" fitHeight="90.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fx:id="p2StartImage" fitHeight="93.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@../images" />
                   </image>

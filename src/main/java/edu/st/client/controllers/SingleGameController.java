@@ -77,7 +77,18 @@ public class SingleGameController extends BaseController {
     updateBoard(tile, row, col);
 
     if (Util.isWinner(board)) {
-      overlay.setVisible(true);
+      Thread thread = new Thread(
+          () -> {
+            try {
+              Thread.sleep(2000);
+              Platform.runLater(() -> {
+                overlay.setVisible(true);
+              });
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
+          });
+      thread.start();
     } else if (Util.isBoardFull(board)) {
       overlay.setVisible(true);
     } else {
