@@ -2,12 +2,12 @@ package edu.st.client.controllers;
 
 import edu.st.client.models.Player;
 import edu.st.client.services.FxService;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -31,14 +31,14 @@ public class SingleAvatarController extends BaseController {
   public HBox p1 = null;
   public HBox p2 = null;
   private HBox previousP1 = null;
-  private HBox previousP2 = null;
-  public GridPane grid;
   public ImageView p2StartImage = null;
 
   public SingleAvatarController() {
     readAvatars();
     player = new Player("Player 1");
     cpu = new Player("CPU");
+    // FxService.setMedia("audio/vs.mp3");
+    // FxService.playMedia();
   }
 
   @FXML
@@ -72,9 +72,7 @@ public class SingleAvatarController extends BaseController {
     previousP1.getChildren().get(0).setVisible(false);
 
     // set functionality for player name as well
-    // String avatarStr = tile.getId().substring(0, tile.getId().length() - 2);
     String avatarStr = tile.getId();
-
     URL avatarPath = Main.class.getResource("images/avatars/" + avatarStr +
         ".jpg");
     player.setAvatarPath(avatarPath);
@@ -87,23 +85,31 @@ public class SingleAvatarController extends BaseController {
       player.setName(playerTextField.getText());
     }
 
+    // Thread thread = new Thread(
+    // () -> {
+    // try {
+    // Thread.sleep(700);
+    // Platform.runLater(() -> {
+    // cpuGenerateAvatar();
+    // });
+    // } catch (InterruptedException e) {
+    // e.printStackTrace();
+    // }
+    // });
+    // thread.start();
     cpuGenerateAvatar();
 
-    // FxService.switchViews("views/Game.fxml", new SingleGameController(player,
-    // cpu));
-    FxService.switchViews("views/Game.fxml", new GameController(player, cpu));
+    FxService.switchViews("views/Game.fxml", new SingleGameController(player, cpu));
   }
 
   private void cpuGenerateAvatar() {
     Random random = new Random();
-    // player.setAvatarPath(Main.class.getResource("images/avatars/Ryu.jpg"));
 
-    // Default is Ryu if the avatar path is null. TEMPORARY
     if (player.getAvatarPath() == null) {
       player.setAvatarPath(Main.class.getResource("images/avatars/Ryu.jpg"));
     }
 
-    String avatarName = player.getAvatarPath().getPath();
+    String avatarName = player.getAvatarPath().toString();
     String avatarStr = avatarName.substring(33, avatarName.length() - 4);
     avatars.remove(avatarStr);
 
@@ -111,11 +117,7 @@ public class SingleAvatarController extends BaseController {
     URL avatarPath = Main.class.getResource("images/avatars/" + randAvatar + ".jpg");
     cpu.setAvatarPath(avatarPath);
 
-    // try {
-    // Thread.sleep(5000); // Freeze for 4 seconds
-    // } catch (InterruptedException e) {
-    // e.printStackTrace();
-    // }
+    p2StartImage.setImage(new Image(avatarPath.toString()));
   }
 
   private void readAvatars() {
