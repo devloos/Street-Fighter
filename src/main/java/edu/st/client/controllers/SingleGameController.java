@@ -76,39 +76,17 @@ public class SingleGameController extends BaseController {
 
     updateBoard(tile, row, col);
 
-    if (Util.isWinner(board)) {
-      Thread thread = new Thread(
-          () -> {
-            try {
-              Thread.sleep(2000);
-              Platform.runLater(() -> {
-                overlay.setVisible(true);
-              });
-            } catch (InterruptedException e) {
-              e.printStackTrace();
-            }
-          });
-      thread.start();
-    } else if (Util.isBoardFull(board)) {
-      overlay.setVisible(true);
+    if (Util.isWinner(board) || Util.isBoardFull(board)) {
+      GameService.addTask(700, () -> {
+        overlay.setVisible(true);
+      });
     } else {
-      Thread thread = new Thread(
-          () -> {
-            try {
-              Thread.sleep(700);
-              Platform.runLater(() -> {
-                cpuMove();
-                if (Util.isWinner(board)) {
-                  overlay.setVisible(true);
-                } else if (Util.isBoardFull(board)) {
-                  overlay.setVisible(true);
-                }
-              });
-            } catch (InterruptedException e) {
-              e.printStackTrace();
-            }
-          });
-      thread.start();
+      GameService.addTask(700, () -> {
+        cpuMove();
+        if (Util.isWinner(board) || Util.isBoardFull(board)) {
+          overlay.setVisible(true);
+        }
+      });
     }
   }
 

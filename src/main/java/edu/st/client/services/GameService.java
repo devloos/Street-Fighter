@@ -1,6 +1,8 @@
 package edu.st.client.services;
 
+import edu.st.client.models.Callback;
 import edu.st.client.models.Player;
+import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.effect.DropShadow;
@@ -42,6 +44,21 @@ public class GameService {
 
   public static void setPlayerThinking(AnchorPane profile, boolean bool) {
     getIndicator(profile).setVisible(bool);
+  }
+
+  public static void addTask(int milli, Callback method) {
+    Thread thread = new Thread(
+        () -> {
+          try {
+            Thread.sleep(milli);
+            Platform.runLater(() -> {
+              method.call();
+            });
+          } catch (InterruptedException e) {
+            e.printStackTrace();
+          }
+        });
+    thread.start();
   }
 
   private static ProgressIndicator getIndicator(AnchorPane profile) {
