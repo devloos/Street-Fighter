@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
@@ -109,8 +110,9 @@ public class SingleAvatarController extends BaseController {
       player.setAvatarPath(Main.class.getResource("images/avatars/Ryu.jpg"));
     }
 
-    String avatarName = player.getAvatarPath().toString();
-    String avatarStr = avatarName.substring(33, avatarName.length() - 4);
+    String avatarFile = player.getAvatarPath().getPath();
+    String fileName = new File(avatarFile).getName();
+    String avatarStr = fileName.substring(0, fileName.lastIndexOf('.'));
     avatars.remove(avatarStr);
 
     String randAvatar = avatars.get(random.nextInt(avatars.size()));
@@ -134,5 +136,5 @@ public class SingleAvatarController extends BaseController {
 
   private Player player = null;
   private Player cpu = null;
-  private List<String> avatars = new ArrayList<>();
+  private ArrayList<String> avatars = new ArrayList<>();
 }
