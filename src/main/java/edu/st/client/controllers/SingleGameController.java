@@ -8,7 +8,6 @@ import edu.st.client.services.FxService;
 import edu.st.client.services.GameService;
 import edu.st.common.Util;
 import edu.st.common.models.Token;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
