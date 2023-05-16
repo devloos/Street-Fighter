@@ -251,56 +251,54 @@ public class SingleGameController extends BaseController {
   private int minimax(int depth, Boolean isMax) {
     int score = evaluate();
 
-    // If Maximizer has won the game, return his/her score
+    // If Maximizer won return their score
     if (score == 10) {
       return score;
     }
 
-    // If Minimizer has won the game, return his/her score
+    // If Minimizer won return their score
     if (score == -10) {
       return score;
     }
 
-    // If there are no more moves and no winner then it is a tie
+    // no more moves, no winner -> tie
     if (Util.isBoardFull(board)) {
       return 0;
     }
 
-    // If this maximizer's move
+    // If it is the maximizers (CPU) move
     if (isMax) {
       int best = -1000;
 
       for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
-          // Check if cell is empty
           if (board.get(i).get(j) == null) {
             // Make the move
             board.get(i).set(j, Token.Y);
 
-            // Call minimax recursively and choose the maximum value
+            // Recursive
             best = Math.max(best, minimax(depth + 1, !isMax));
 
-            // Undo the move
+            // "Backtrack" - Undo the move
             board.get(i).set(j, null);
           }
         }
       }
       return best;
-    } // If this minimizer's move
+    } // If its the minimizer's move (player)
     else {
       int best = 1000;
 
       for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
-          // Check if cell is empty
           if (board.get(i).get(j) == null) {
             // Make the move
             board.get(i).set(j, Token.X);
 
-            // Call minimax recursively and choose the minimum value
+            // Recursive
             best = Math.min(best, minimax(depth + 1, !isMax));
 
-            // Undo the move
+            // "Backtrack" - Undo the move
             board.get(i).set(j, null);
           }
         }
@@ -323,7 +321,6 @@ public class SingleGameController extends BaseController {
 
     for (int i = 0; i < SIZE; i++) {
       for (int j = 0; j < SIZE; j++) {
-        // Check if cell is empty
         if (board.get(i).get(j) == null) {
           // Make the move
           board.get(i).set(j, Token.Y);
@@ -331,11 +328,10 @@ public class SingleGameController extends BaseController {
           // Compute evaluation function for this move
           int moveVal = minimax(0, false);
 
-          // Undo the move
+          // "Backtrack" - Undo the move
           board.get(i).set(j, null);
 
-          // If the value of the current move is more than the best value, then update
-          // best
+          // Check for Max Value
           if (moveVal > bestVal) {
             bestMove[0] = i;
             bestMove[1] = j;
