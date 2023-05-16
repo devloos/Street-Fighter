@@ -36,7 +36,7 @@ public class LoginController extends BaseController {
     });
 
     single_player_btn.setOnAction(event -> {
-      overlay.setVisible(true);
+      FxService.switchViews("views/SingleAvatarPicker.fxml", new SingleAvatarController());
     });
 
     multiplayer_btn.setOnAction(event -> {

@@ -1,6 +1,7 @@
 package edu.st.client.controllers;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import edu.st.client.models.Player;
 import edu.st.client.services.FxService;
@@ -15,27 +16,26 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
-public class GameController extends BaseController {
-  // all fxml properties
-  public AnchorPane overlay = null;
-  public GridPane grid = null;
+public class SingleGameController extends BaseController {
   public AnchorPane profile1 = null;
   public AnchorPane profile2 = null;
   public Button restart_btn = null;
   public Button return_btn = null;
+  public AnchorPane overlay = null;
+  public GridPane grid = null;
 
-  public GameController(Player player1, Player player2) {
-    p1 = player1;
-    p2 = player2;
+  public SingleGameController(Player player, Player cpu) {
+    this.player = player;
+    this.cpu = cpu;
     GameService.initBoard(board);
-    FxService.setMedia("audio/vs.mp3");
-    FxService.playMedia();
+    // FxService.setMedia("audio/vs.mp3");
+    // FxService.playMedia();
   }
 
   @FXML
   public void initialize() {
-    GameService.setPlayerProfile(profile1, p1);
-    GameService.setPlayerProfile(profile2, p2);
+    GameService.setPlayerProfile(profile1, player);
+    GameService.setPlayerProfile(profile2, cpu);
 
     restart_btn.setOnAction(event -> {
       overlay.setVisible(false);
@@ -49,6 +49,10 @@ public class GameController extends BaseController {
 
   @FXML
   public void playerClickedTile(MouseEvent event) {
+    if (currentPlayer == Token.Y) {
+      return;
+    }
+
     Node node = event.getPickResult().getIntersectedNode();
     // clicked on anything else but inner tile
     if (!(node instanceof HBox)) {
@@ -71,23 +75,63 @@ public class GameController extends BaseController {
 
     updateBoard(tile, row, col);
 
-    if (Util.isWinner(board)) {
-      overlay.setVisible(true);
-    } else if (Util.isBoardFull(board)) {
-      overlay.setVisible(true);
+    if (Util.isWinner(board) || Util.isBoardFull(board)) {
+      GameService.addTask(700, () -> {
+        overlay.setVisible(true);
+      });
+    } else {
+      GameService.addTask(700, () -> {
+        cpuMove();
+        if (Util.isWinner(board) || Util.isBoardFull(board)) {
+          overlay.setVisible(true);
+        }
+      });
     }
+  }
+
+  private void cpuMove() {
+    if (Util.isWinner(board) || Util.isBoardFull(board)) {
+      overlay.setVisible(true);
+      return;
+    }
+
+    Random random = new Random();
+
+    Integer row = random.nextInt(3);
+    Integer col = random.nextInt(3);
+
+    boolean indexFound = false;
+
+    while (!indexFound) {
+      if (board.get(row).get(col) == null) {
+        indexFound = true;
+      } else {
+        row = random.nextInt(3);
+        col = random.nextInt(3);
+      }
+    }
+
+    HBox tile = null;
+    for (Node node : grid.getChildren()) {
+      if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == col) {
+        tile = (HBox) node;
+        break;
+      }
+    }
+
+    updateBoard(tile, row, col);
   }
 
   private void updateBoard(HBox tile, Integer row, Integer col) {
     switch (currentPlayer) {
       case X: {
-        GameService.setPlayerTile(tile, p1);
+        GameService.setPlayerTile(tile, player);
         board.get(row).set(col, currentPlayer);
         setCurrentPlayer(Token.Y);
         break;
       }
       case Y: {
-        GameService.setPlayerTile(tile, p2);
+        GameService.setPlayerTile(tile, cpu);
         board.get(row).set(col, currentPlayer);
         setCurrentPlayer(Token.X);
         break;
@@ -115,7 +159,6 @@ public class GameController extends BaseController {
     setCurrentPlayer(Token.X);
   }
 
-  // this function should be used to set player since it is being watched
   private void setCurrentPlayer(Token token) {
     currentPlayer = token;
     switch (currentPlayer) {
@@ -135,8 +178,8 @@ public class GameController extends BaseController {
     }
   }
 
+  private Player player = null;
+  private Player cpu = null;
   private ArrayList<ArrayList<Token>> board = new ArrayList<ArrayList<Token>>();
-  private Player p1 = null;
-  private Player p2 = null;
   private Token currentPlayer = Token.X;
 }
