@@ -1,7 +1,10 @@
 package edu.st.client.services;
 
+import java.util.ArrayList;
+
 import edu.st.client.models.Callback;
 import edu.st.client.models.Player;
+import edu.st.common.models.Token;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
@@ -59,6 +62,15 @@ public class GameService {
           }
         });
     thread.start();
+  }
+
+  public static void initBoard(ArrayList<ArrayList<Token>> board) {
+    for (int i = 0; i < 3; ++i) {
+      board.add(new ArrayList<Token>());
+      for (int j = 0; j < 3; ++j) {
+        board.get(i).add(null);
+      }
+    }
   }
 
   private static ProgressIndicator getIndicator(AnchorPane profile) {

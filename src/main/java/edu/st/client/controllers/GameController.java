@@ -27,7 +27,7 @@ public class GameController extends BaseController {
   public GameController(Player player1, Player player2) {
     p1 = player1;
     p2 = player2;
-    initBoard();
+    GameService.initBoard(board);
     FxService.setMedia("audio/vs.mp3");
     FxService.playMedia();
   }
@@ -115,16 +115,6 @@ public class GameController extends BaseController {
     setCurrentPlayer(Token.X);
   }
 
-  private void initBoard() {
-    board = new ArrayList<ArrayList<Token>>();
-    for (int i = 0; i < 3; ++i) {
-      board.add(new ArrayList<Token>());
-      for (int j = 0; j < 3; ++j) {
-        board.get(i).add(null);
-      }
-    }
-  }
-
   // this function should be used to set player since it is being watched
   private void setCurrentPlayer(Token token) {
     currentPlayer = token;
@@ -145,7 +135,7 @@ public class GameController extends BaseController {
     }
   }
 
-  private ArrayList<ArrayList<Token>> board = null;
+  private ArrayList<ArrayList<Token>> board = new ArrayList<ArrayList<Token>>();
   private Player p1 = null;
   private Player p2 = null;
   private Token currentPlayer = Token.X;

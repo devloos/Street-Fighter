@@ -27,7 +27,7 @@ public class SingleGameController extends BaseController {
   public SingleGameController(Player player, Player cpu) {
     this.player = player;
     this.cpu = cpu;
-    initBoard();
+    GameService.initBoard(board);
     // FxService.setMedia("audio/vs.mp3");
     // FxService.playMedia();
   }
@@ -90,6 +90,11 @@ public class SingleGameController extends BaseController {
   }
 
   private void cpuMove() {
+    if (Util.isWinner(board) || Util.isBoardFull(board)) {
+      overlay.setVisible(true);
+      return;
+    }
+
     Random random = new Random();
 
     Integer row = random.nextInt(3);
@@ -137,16 +142,6 @@ public class SingleGameController extends BaseController {
     }
   }
 
-  private void initBoard() {
-    board = new ArrayList<ArrayList<Token>>();
-    for (int i = 0; i < 3; ++i) {
-      board.add(new ArrayList<Token>());
-      for (int j = 0; j < 3; ++j) {
-        board.get(i).add(null);
-      }
-    }
-  }
-
   private void resetGame() {
     // clear state
     for (ArrayList<Token> row : board) {
@@ -185,6 +180,6 @@ public class SingleGameController extends BaseController {
 
   private Player player = null;
   private Player cpu = null;
-  private ArrayList<ArrayList<Token>> board = null;
+  private ArrayList<ArrayList<Token>> board = new ArrayList<ArrayList<Token>>();
   private Token currentPlayer = Token.X;
 }

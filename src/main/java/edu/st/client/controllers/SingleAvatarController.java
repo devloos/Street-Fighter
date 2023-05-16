@@ -2,7 +2,7 @@ package edu.st.client.controllers;
 
 import edu.st.client.models.Player;
 import edu.st.client.services.FxService;
-import javafx.application.Platform;
+import edu.st.client.services.GameService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -87,18 +87,9 @@ public class SingleAvatarController extends BaseController {
 
     cpuGenerateAvatar();
 
-    Thread thread = new Thread(
-        () -> {
-          try {
-            Thread.sleep(2000);
-            Platform.runLater(() -> {
-              FxService.switchViews("views/Game.fxml", new SingleGameController(player, cpu));
-            });
-          } catch (InterruptedException e) {
-            e.printStackTrace();
-          }
-        });
-    thread.start();
+    GameService.addTask(700, () -> {
+      FxService.switchViews("views/Game.fxml", new SingleGameController(player, cpu));
+    });
   }
 
   private void cpuGenerateAvatar() {
