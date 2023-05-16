@@ -3,6 +3,7 @@ package edu.st.client.controllers;
 import edu.st.client.models.Player;
 import edu.st.client.services.FxService;
 import edu.st.client.services.GameService;
+import edu.st.common.models.Mode;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -32,6 +33,9 @@ public class SingleAvatarController extends BaseController {
   public HBox p2 = null;
   private HBox previousP1 = null;
   public ImageView p2StartImage = null;
+  public Button easy_btn = null;
+  public Button hard_btn = null;
+  public AnchorPane mode_overlay = null;
 
   public SingleAvatarController() {
     readAvatars();
@@ -43,9 +47,21 @@ public class SingleAvatarController extends BaseController {
 
   @FXML
   public void initialize() {
+    mode_overlay.setVisible(true);
     error_btn.setOnAction(event -> {
       error.setVisible(false);
     });
+
+    easy_btn.setOnAction(event -> {
+      mode_overlay.setVisible(false);
+      mode = Mode.EASY;
+    });
+
+    hard_btn.setOnAction(event -> {
+      mode_overlay.setVisible(false);
+      mode = Mode.HARD;
+    });
+
   }
 
   @FXML
@@ -87,8 +103,8 @@ public class SingleAvatarController extends BaseController {
 
     cpuGenerateAvatar();
 
-    GameService.addTask(700, () -> {
-      FxService.switchViews("views/Game.fxml", new SingleGameController(player, cpu));
+    GameService.addTask(GameService.DELAY, () -> {
+      FxService.switchViews("views/Game.fxml", new SingleGameController(player, cpu, mode));
     });
   }
 
@@ -127,4 +143,5 @@ public class SingleAvatarController extends BaseController {
   private Player player = null;
   private Player cpu = null;
   private ArrayList<String> avatars = new ArrayList<>();
+  private Mode mode = null;
 }

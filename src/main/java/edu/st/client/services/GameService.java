@@ -78,4 +78,6 @@ public class GameService {
     ProgressIndicator indicator = (ProgressIndicator) inputDiv.getChildren().get(1);
     return indicator;
   }
+
+  public static final int DELAY = 700;
 }

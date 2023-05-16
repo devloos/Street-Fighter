@@ -7,6 +7,7 @@ import edu.st.client.models.Player;
 import edu.st.client.services.FxService;
 import edu.st.client.services.GameService;
 import edu.st.common.Util;
+import edu.st.common.models.Mode;
 import edu.st.common.models.Token;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -24,9 +25,10 @@ public class SingleGameController extends BaseController {
   public AnchorPane overlay = null;
   public GridPane grid = null;
 
-  public SingleGameController(Player player, Player cpu) {
+  public SingleGameController(Player player, Player cpu, Mode mode) {
     this.player = player;
     this.cpu = cpu;
+    this.mode = mode;
     GameService.initBoard(board);
     // FxService.setMedia("audio/vs.mp3");
     // FxService.playMedia();
@@ -76,12 +78,19 @@ public class SingleGameController extends BaseController {
     updateBoard(tile, row, col);
 
     if (Util.isWinner(board) || Util.isBoardFull(board)) {
-      GameService.addTask(700, () -> {
+      GameService.addTask(GameService.DELAY, () -> {
         overlay.setVisible(true);
       });
-    } else {
-      GameService.addTask(700, () -> {
-        cpuMove();
+    } else if (mode == Mode.EASY) {
+      GameService.addTask(GameService.DELAY, () -> {
+        cpuEasyMove();
+        if (Util.isWinner(board) || Util.isBoardFull(board)) {
+          overlay.setVisible(true);
+        }
+      });
+    } else if (mode == Mode.HARD) {
+      GameService.addTask(GameService.DELAY, () -> {
+        cpuHardMove();
         if (Util.isWinner(board) || Util.isBoardFull(board)) {
           overlay.setVisible(true);
         }
@@ -89,7 +98,7 @@ public class SingleGameController extends BaseController {
     }
   }
 
-  private void cpuMove() {
+  private void cpuEasyMove() {
     if (Util.isWinner(board) || Util.isBoardFull(board)) {
       overlay.setVisible(true);
       return;
@@ -178,8 +187,181 @@ public class SingleGameController extends BaseController {
     }
   }
 
+  // Evlaute function, checks all possible winning lines (row, columns, and
+  // diagonals) and assigns a score based on whoever is winning:
+  // +10 if CPU (Token.Y) is winning
+  // -10 if Player (Token.X) is winning
+  // 0 otherwise
+  // Cite:
+  // https://www.geeksforgeeks.org/finding-optimal-move-in-tic-tac-toe-using-minimax-algorithm-in-game-theory/
+  private int evaluate() {
+    // Check rows for winner
+    for (int row = 0; row < SIZE; row++) {
+      if (board.get(row).get(0) == board.get(row).get(1) && board.get(row).get(1) == board.get(row).get(2)) {
+        if (board.get(row).get(0) == Token.Y) {
+          return +10;
+        } else if (board.get(row).get(0) == Token.X) {
+          return -10;
+        }
+      }
+    }
+
+    // Check columns for winner
+    for (int col = 0; col < SIZE; col++) {
+      if (board.get(0).get(col) == board.get(1).get(col) && board.get(1).get(col) == board.get(2).get(col)) {
+        if (board.get(0).get(col) == Token.Y) {
+          return +10;
+        } else if (board.get(0).get(col) == Token.X) {
+          return -10;
+        }
+      }
+    }
+
+    // Check diagonals for winner
+    if (board.get(0).get(0) == board.get(1).get(1) && board.get(1).get(1) == board.get(2).get(2)) {
+      if (board.get(0).get(0) == Token.Y) {
+        return +10;
+      } else if (board.get(0).get(0) == Token.X) {
+        return -10;
+      }
+    }
+
+    if (board.get(0).get(2) == board.get(1).get(1) && board.get(1).get(1) == board.get(2).get(0)) {
+      if (board.get(0).get(2) == Token.Y) {
+        return +10;
+      } else if (board.get(0).get(2) == Token.X) {
+        return -10;
+      }
+    }
+
+    // If no one has won, return 0
+    return 0;
+  }
+
+  // Minimax is a recursive function that simulates all possible game states
+  // (moves) and evaluates them using
+  // the evaluate() function. It simulates two players (a minimizer and maximizer)
+  // taking turns each trying to
+  // minimize and maximize the evaluation score respectively.
+  // For the maximizer (CPU), the function returns the maximum score of all
+  // possible moves
+  // For the minimizer (Player), the function returns the minimum score
+  // Cite:
+  // https://www.geeksforgeeks.org/finding-optimal-move-in-tic-tac-toe-using-minimax-algorithm-in-game-theory/
+  private int minimax(int depth, Boolean isMax) {
+    int score = evaluate();
+
+    // If Maximizer won return their score
+    if (score == 10) {
+      return score;
+    }
+
+    // If Minimizer won return their score
+    if (score == -10) {
+      return score;
+    }
+
+    // no more moves, no winner -> tie
+    if (Util.isBoardFull(board)) {
+      return 0;
+    }
+
+    // If it is the maximizers (CPU) move
+    if (isMax) {
+      int best = -1000;
+
+      for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+          if (board.get(i).get(j) == null) {
+            // Make the move
+            board.get(i).set(j, Token.Y);
+
+            // Recursive
+            best = Math.max(best, minimax(depth + 1, !isMax));
+
+            // "Backtrack" - Undo the move
+            board.get(i).set(j, null);
+          }
+        }
+      }
+      return best;
+    } // If its the minimizer's move (player)
+    else {
+      int best = 1000;
+
+      for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+          if (board.get(i).get(j) == null) {
+            // Make the move
+            board.get(i).set(j, Token.X);
+
+            // Recursive
+            best = Math.min(best, minimax(depth + 1, !isMax));
+
+            // "Backtrack" - Undo the move
+            board.get(i).set(j, null);
+          }
+        }
+      }
+      return best;
+    }
+  }
+
+  // BestMove function uses minimax to find the best move for the computer. It
+  // iterates over all empty cells
+  // on the game board, and simulates the computer making a move on each cell, and
+  // uses minimax to evaluate
+  // the game stae. The function returns the move as an array of the highest
+  // evaluation score
+  // Cite:
+  // https://www.geeksforgeeks.org/finding-optimal-move-in-tic-tac-toe-using-minimax-algorithm-in-game-theory/
+  private int[] bestMove() {
+    int bestVal = -1000;
+    int[] bestMove = { -1, -1 };
+
+    for (int i = 0; i < SIZE; i++) {
+      for (int j = 0; j < SIZE; j++) {
+        if (board.get(i).get(j) == null) {
+          // Make the move
+          board.get(i).set(j, Token.Y);
+
+          // Compute evaluation function for this move
+          int moveVal = minimax(0, false);
+
+          // "Backtrack" - Undo the move
+          board.get(i).set(j, null);
+
+          // Check for Max Value
+          if (moveVal > bestVal) {
+            bestMove[0] = i;
+            bestMove[1] = j;
+            bestVal = moveVal;
+          }
+        }
+      }
+    }
+
+    return bestMove;
+  }
+
+  private void cpuHardMove() {
+    int[] bestMove = bestMove();
+
+    HBox tile = null;
+    for (Node node : grid.getChildren()) {
+      if (GridPane.getRowIndex(node) == bestMove[0] && GridPane.getColumnIndex(node) == bestMove[1]) {
+        tile = (HBox) node;
+        break;
+      }
+    }
+
+    updateBoard(tile, bestMove[0], bestMove[1]);
+  }
+
+  private static final int SIZE = 3;
   private Player player = null;
   private Player cpu = null;
   private ArrayList<ArrayList<Token>> board = new ArrayList<ArrayList<Token>>();
   private Token currentPlayer = Token.X;
+  private Mode mode = null;
 }
