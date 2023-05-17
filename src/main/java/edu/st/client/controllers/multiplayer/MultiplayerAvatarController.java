@@ -17,7 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
-public class AvatarController extends BaseController {
+public class MultiplayerAvatarController extends BaseController {
   // fxml properties
   public HBox p1 = null;
   public HBox p2 = null;
@@ -30,7 +30,7 @@ public class AvatarController extends BaseController {
   private HBox previousP1 = null;
   private HBox previousP2 = null;
 
-  public AvatarController() {
+  public MultiplayerAvatarController() {
     player1 = new Player("Player 1");
     player2 = new Player("Player 2");
     FxService.setMedia("audio/selection.mp3");
@@ -127,7 +127,7 @@ public class AvatarController extends BaseController {
       player2.setName(p2TextField.getText());
     }
 
-    FxService.switchViews("views/Game.fxml", new GameController(player1, player2));
+    FxService.switchViews("views/Game.fxml", new MultiplayerGameController(player1, player2));
   }
 
   private Player player1 = null;

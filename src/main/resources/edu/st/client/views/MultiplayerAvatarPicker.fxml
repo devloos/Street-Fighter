@@ -18,7 +18,7 @@
 
 <AnchorPane stylesheets="@../css/selection.css" xmlns="http://javafx.com/javafx/19"
    xmlns:fx="http://javafx.com/fxml/1"
-   fx:controller="edu.st.client.controllers.multiplayer.AvatarController">
+   fx:controller="edu.st.client.controllers.multiplayer.MultiplayerAvatarController">
    <AnchorPane prefHeight="480.0" prefWidth="640.0">
       <children>
          <ImageView fitHeight="480.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true">

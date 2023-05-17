@@ -41,11 +41,11 @@ public class LoginController extends BaseController {
     });
 
     multiplayer_btn.setOnAction(event -> {
-      FxService.switchViews("views/AvatarPicker.fxml", null);
+      FxService.switchViews("views/MultiplayerAvatarPicker.fxml", null);
     });
 
     online_btn.setOnAction(event -> {
-      FxService.switchViews("views/GameLobby.fxml", null);
+      FxService.switchViews("views/OnlineLobby.fxml", null);
     });
   }
 

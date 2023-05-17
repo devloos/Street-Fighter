@@ -16,16 +16,18 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
-public class GameController extends BaseController {
+public class MultiplayerGameController extends BaseController {
   // all fxml properties
   public AnchorPane overlay = null;
   public GridPane grid = null;
+  public AnchorPane win = null;
+  public AnchorPane tie = null;
   public AnchorPane profile1 = null;
   public AnchorPane profile2 = null;
   public Button restart_btn = null;
   public Button return_btn = null;
 
-  public GameController(Player player1, Player player2) {
+  public MultiplayerGameController(Player player1, Player player2) {
     p1 = player1;
     p2 = player2;
     GameService.initBoard(board);
@@ -40,6 +42,8 @@ public class GameController extends BaseController {
 
     restart_btn.setOnAction(event -> {
       overlay.setVisible(false);
+      win.setVisible(false);
+      tie.setVisible(false);
       resetGame();
     });
 
@@ -72,11 +76,36 @@ public class GameController extends BaseController {
 
     updateBoard(tile, row, col);
 
-    if (Util.isWinner(board)) {
-      overlay.setVisible(true);
-    } else if (Util.isBoardFull(board)) {
-      overlay.setVisible(true);
+    Player p = null;
+
+    // takes previous player since updateBoard is not a
+    // pure function and mutates current player
+    if (currentPlayer == Token.X) {
+      p = p2;
+    } else {
+      p = p1;
     }
+
+    isGameOver(p);
+  }
+
+  private boolean isGameOver(Player player) {
+    if (Util.isWinner(board)) {
+      GameService.addTask(GameService.DELAY, () -> {
+        GameService.setPlayerProfile(win, player);
+        overlay.setVisible(true);
+        win.setVisible(true);
+      });
+      return true;
+    } else if (Util.isBoardFull(board)) {
+      GameService.addTask(GameService.DELAY, () -> {
+        overlay.setVisible(true);
+        tie.setVisible(true);
+      });
+      return true;
+    }
+
+    return false;
   }
 
   private void updateBoard(HBox tile, Integer row, Integer col) {

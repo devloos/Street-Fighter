@@ -29,12 +29,12 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 
-public class GameLobbyController extends BaseController {
+public class OnlineLobbyController extends BaseController {
   public ListView<HBox> gameList = null;
   public TextField username = null;
   public Button createGamebtn = null;
 
-  public GameLobbyController() {
+  public OnlineLobbyController() {
     try {
       this.socket = new Socket(host, port);
 
