@@ -2,6 +2,7 @@ package edu.st.client.controllers;
 
 import java.util.ArrayList;
 
+import edu.st.client.controllers.single.SingleAvatarController;
 import edu.st.client.services.FxService;
 import edu.st.client.services.LoginService;
 import javafx.fxml.FXML;

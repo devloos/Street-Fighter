@@ -1,8 +1,9 @@
-package edu.st.client.controllers;
+package edu.st.client.controllers.multiplayer;
 
 import java.net.URL;
 
 import edu.st.client.Main;
+import edu.st.client.controllers.BaseController;
 import edu.st.client.models.Player;
 import edu.st.client.services.FxService;
 import javafx.event.ActionEvent;

@@ -1,7 +1,8 @@
-package edu.st.client.controllers;
+package edu.st.client.controllers.multiplayer;
 
 import java.util.ArrayList;
 
+import edu.st.client.controllers.BaseController;
 import edu.st.client.models.Player;
 import edu.st.client.services.FxService;
 import edu.st.client.services.GameService;

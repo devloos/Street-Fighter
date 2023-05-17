@@ -1,4 +1,4 @@
-package edu.st.client.controllers;
+package edu.st.client.controllers.single;
 
 import edu.st.client.models.Player;
 import edu.st.client.services.FxService;
@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import edu.st.client.Main;
+import edu.st.client.controllers.BaseController;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
