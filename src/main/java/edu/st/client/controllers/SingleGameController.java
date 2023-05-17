@@ -20,6 +20,8 @@ import javafx.scene.layout.HBox;
 public class SingleGameController extends BaseController {
   public AnchorPane profile1 = null;
   public AnchorPane profile2 = null;
+  public AnchorPane win = null;
+  public AnchorPane tie = null;
   public Button restart_btn = null;
   public Button return_btn = null;
   public AnchorPane overlay = null;
@@ -41,6 +43,8 @@ public class SingleGameController extends BaseController {
 
     restart_btn.setOnAction(event -> {
       overlay.setVisible(false);
+      win.setVisible(false);
+      tie.setVisible(false);
       resetGame();
     });
 
@@ -77,30 +81,43 @@ public class SingleGameController extends BaseController {
 
     updateBoard(tile, row, col);
 
-    if (Util.isWinner(board) || Util.isBoardFull(board)) {
-      GameService.addTask(GameService.DELAY, () -> {
-        overlay.setVisible(true);
-      });
-    } else if (mode == Mode.EASY) {
+    if (isGameOver(player)) {
+      return;
+    }
+
+    if (mode == Mode.EASY) {
       GameService.addTask(GameService.DELAY, () -> {
         cpuEasyMove();
-        if (Util.isWinner(board) || Util.isBoardFull(board)) {
-          overlay.setVisible(true);
-        }
+        isGameOver(cpu);
       });
     } else if (mode == Mode.HARD) {
       GameService.addTask(GameService.DELAY, () -> {
         cpuHardMove();
-        if (Util.isWinner(board) || Util.isBoardFull(board)) {
-          overlay.setVisible(true);
-        }
+        isGameOver(cpu);
       });
     }
   }
 
+  private boolean isGameOver(Player player) {
+    if (Util.isWinner(board)) {
+      GameService.addTask(GameService.DELAY, () -> {
+        GameService.setPlayerProfile(win, player);
+        overlay.setVisible(true);
+        win.setVisible(true);
+      });
+      return true;
+    } else if (Util.isBoardFull(board)) {
+      GameService.addTask(GameService.DELAY, () -> {
+        overlay.setVisible(true);
+        tie.setVisible(true);
+      });
+      return true;
+    }
+    return false;
+  }
+
   private void cpuEasyMove() {
-    if (Util.isWinner(board) || Util.isBoardFull(board)) {
-      overlay.setVisible(true);
+    if (isGameOver(cpu)) {
       return;
     }
 

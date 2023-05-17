@@ -21,7 +21,8 @@
 }
 
 .btn {
-  -fx-background-color: rgb(92, 38, 38);
+  -fx-background-color: linear-gradient(to bottom, hotpink, purple);
+  -fx-background-radius: 5;
   -fx-text-fill: white;
   -fx-cursor: hand;
   -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 1), 10, 0.2, 0, 5);
@@ -31,4 +32,12 @@
 .btn:pressed {
   -fx-effect: none;
   -fx-translate-y: 2;
+}
+
+.winning-player {
+  -fx-text-fill: linear-gradient(to bottom, hotpink, purple);
+  -fx-background-radius: 5;
+  -fx-cursor: hand;
+  -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 1), 10, 0.2, 0, 5);
+  -fx-translate-y: -2;
 }
