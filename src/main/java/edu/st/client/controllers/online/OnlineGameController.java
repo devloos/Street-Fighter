@@ -12,6 +12,7 @@ import edu.st.client.models.Player;
 import edu.st.client.services.FxService;
 import edu.st.client.services.GameService;
 import edu.st.common.Util;
+import edu.st.common.messages.GameResult;
 import edu.st.common.messages.Message;
 import edu.st.common.messages.Packet;
 import edu.st.common.messages.Received;
@@ -33,6 +34,8 @@ import javafx.scene.layout.HBox;
 public class OnlineGameController extends BaseController {
   public AnchorPane overlay = null;
   public GridPane grid = null;
+  public AnchorPane win = null;
+  public AnchorPane tie = null;
   public AnchorPane profile1 = null;
   public AnchorPane profile2 = null;
   public Button restart_btn = null;
@@ -101,6 +104,15 @@ public class OnlineGameController extends BaseController {
                 GameEnded msg = (GameEnded) message;
                 Platform.runLater(() -> {
                   this.updateUI(msg.getRow(), msg.getCol());
+                  if (msg.getResult() == GameResult.Host) {
+                    GameService.setPlayerProfile(win, host);
+                    this.win.setVisible(true);
+                  } else if (msg.getResult() == GameResult.Player) {
+                    GameService.setPlayerProfile(win, player);
+                    this.win.setVisible(true);
+                  } else {
+                    this.tie.setVisible(true);
+                  }
                   this.overlay.setVisible(true);
                 });
               }
@@ -110,6 +122,8 @@ public class OnlineGameController extends BaseController {
                   this.overlay.setVisible(false);
                   return_btn.setDisable(false);
                   restart_btn.setDisable(false);
+                  win.setVisible(false);
+                  tie.setVisible(false);
                   this.resetGame();
                 });
               }
