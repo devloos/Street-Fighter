@@ -85,6 +85,11 @@ public class OnlineAvatarController extends BaseController {
 
                   URL avatarSelected = Main.class.getResource("images/avatars/" + msg.getAvatarSelected() + ".jpg");
 
+                  grid.lookup("#" + msg.getAvatarSelected()).setDisable(true);
+                  if (msg.getPrevAvatar() != null) {
+                    grid.lookup("#" + msg.getPrevAvatar()).setDisable(false);
+                  }
+
                   if (imHost) {
                     player.setAvatarPath(avatarSelected);
                   } else {
@@ -124,8 +129,10 @@ public class OnlineAvatarController extends BaseController {
     ImageView image = (ImageView) p1.getChildren().get(0);
 
     // should be false on initial
+    String prevAvatar = null;
     if (previousP1 != null) {
       previousP1.getChildren().get(0).setVisible(true);
+      prevAvatar = previousP1.getId();
     }
     previousP1 = tile;
 
@@ -145,7 +152,7 @@ public class OnlineAvatarController extends BaseController {
       player.setAvatarPath(avatarPath);
     }
 
-    Util.println(socket, new PlayerAvatarChange(avatarStr), gameId.toString());
+    Util.println(socket, new PlayerAvatarChange(avatarStr, prevAvatar), gameId.toString());
   }
 
   public void readyUp() {
