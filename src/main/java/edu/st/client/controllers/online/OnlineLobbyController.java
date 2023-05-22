@@ -144,9 +144,15 @@ public class OnlineLobbyController extends BaseController {
   }
 
   public void gameStarted(String playerUsername, UUID gameId, boolean isHost) {
-    String hostName = isHost ? username.getText() : playerUsername;
-    String userName = !isHost ? username.getText() : playerUsername;
-    FxService.switchViews("views/Game.fxml", new OnlineGameController(hostName, userName, socket, gameId));
+    String host = isHost ? username.getText() : playerUsername;
+    String user = !isHost ? username.getText() : playerUsername;
+    FxService.switchViews("views/AvatarPicker.fxml",
+        new OnlineAvatarController(host, user, socket, gameId, isHost));
+    // FxService.switchViews("views/Game.fxml",
+    // new OnlineGameController(new
+    // Player(Main.class.getResource("images/avatars/Balrog.jpg"), host),
+    // new Player(Main.class.getResource("images/avatars/Bison.jpg"), user), socket,
+    // gameId));
   }
 
   private Socket socket = null;

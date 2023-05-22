@@ -4,7 +4,6 @@ import edu.st.client.models.Player;
 import edu.st.client.services.FxService;
 import edu.st.client.services.GameService;
 import edu.st.common.models.Mode;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -36,22 +35,30 @@ public class SingleAvatarController extends BaseController {
   public ImageView p2StartImage = null;
   public Button easy_btn = null;
   public Button hard_btn = null;
+  public Button startGame = null;
   public AnchorPane mode_overlay = null;
 
   public SingleAvatarController() {
     readAvatars();
     player = new Player("Player 1");
     cpu = new Player("CPU");
-    // FxService.setMedia("audio/vs.mp3");
-    // FxService.playMedia();
+    FxService.setMedia("audio/selection.mp3");
+    FxService.playMedia();
   }
 
   @FXML
   public void initialize() {
     mode_overlay.setVisible(true);
+    playerTextField.setVisible(true);
     error_btn.setOnAction(event -> {
       error.setVisible(false);
     });
+
+    startGame.setOnAction(event -> {
+      switchToGameScreen();
+    });
+
+    startGame.setText("Start Game");
 
     easy_btn.setOnAction(event -> {
       mode_overlay.setVisible(false);
@@ -95,8 +102,7 @@ public class SingleAvatarController extends BaseController {
     player.setAvatarPath(avatarPath);
   }
 
-  @FXML
-  public void switchToGameScreen(ActionEvent event) {
+  public void switchToGameScreen() {
     // Set player names that are currently in their respective text fields
     if (playerTextField.getText() != "") {
       player.setName(playerTextField.getText());

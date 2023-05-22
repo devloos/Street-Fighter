@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.UUID;
 
-import edu.st.client.Main;
 import edu.st.client.controllers.BaseController;
 import edu.st.client.models.Player;
 import edu.st.client.services.FxService;
@@ -41,9 +40,9 @@ public class OnlineGameController extends BaseController {
   public Button restart_btn = null;
   public Button return_btn = null;
 
-  public OnlineGameController(String host, String player, Socket socket, UUID gameId) {
-    this.host = new Player(Main.class.getResource("images/avatars/Balrog.jpg"), host);
-    this.player = new Player(Main.class.getResource("images/avatars/Bison.jpg"), player);
+  public OnlineGameController(Player host, Player player, Socket socket, UUID gameId) {
+    this.host = host;
+    this.player = player;
     this.socket = socket;
     this.gameId = gameId;
   }
@@ -96,14 +95,14 @@ public class OnlineGameController extends BaseController {
               if (message.getType().contains("MoveMade")) {
                 MoveMade msg = (MoveMade) message;
                 Platform.runLater(() -> {
-                  this.updateUI(msg.getRow(), msg.getCol());
+                  this.updateUI(msg.getRow(), msg.getCol(), msg.getMoveMaker());
                 });
               }
 
               if (message.getType().contains("GameEnded")) {
                 GameEnded msg = (GameEnded) message;
                 Platform.runLater(() -> {
-                  this.updateUI(msg.getRow(), msg.getCol());
+                  this.updateUI(msg.getRow(), msg.getCol(), Token.X);
                   if (msg.getResult() == GameResult.Host) {
                     GameService.setPlayerProfile(win, host);
                     this.win.setVisible(true);
@@ -167,40 +166,22 @@ public class OnlineGameController extends BaseController {
     Util.println(socket, new MakeMove(row, col), gameId.toString());
   }
 
-  public void updateUI(Integer row, Integer col) {
+  public void updateUI(Integer row, Integer col, Token moveMaker) {
     HBox tile = (HBox) grid.getChildren().stream()
         .filter(node -> GridPane.getRowIndex(node).equals(row) && GridPane.getColumnIndex(node).equals(col)).findFirst()
         .orElse(null);
 
-    System.out.println(tile);
-    switch (currentPlayer) {
+    switch (moveMaker) {
       case X: {
         GameService.setPlayerTile(tile, host);
-        setCurrentPlayer(Token.Y);
+        GameService.setPlayerThinking(profile2, true);
+        GameService.setPlayerThinking(profile1, false);
         break;
       }
       case Y: {
         GameService.setPlayerTile(tile, player);
-        setCurrentPlayer(Token.X);
-        break;
-      }
-      default: {
-        break;
-      }
-    }
-  }
-
-  private void setCurrentPlayer(Token token) {
-    currentPlayer = token;
-    switch (currentPlayer) {
-      case X: {
         GameService.setPlayerThinking(profile1, true);
         GameService.setPlayerThinking(profile2, false);
-        break;
-      }
-      case Y: {
-        GameService.setPlayerThinking(profile2, true);
-        GameService.setPlayerThinking(profile1, false);
         break;
       }
       default: {
@@ -215,14 +196,13 @@ public class OnlineGameController extends BaseController {
       GameService.resetTile((HBox) node);
     }
 
-    // Player one starts again
-    setCurrentPlayer(Token.X);
+    GameService.setPlayerThinking(profile1, true);
+    GameService.setPlayerThinking(profile2, false);
   }
 
   private Player host = null;
   private Player player = null;
   private Socket socket = null;
   private UUID gameId = null;
-  private Token currentPlayer = Token.X;
   private volatile boolean flag = true;
 }
