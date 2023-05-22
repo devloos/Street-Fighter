@@ -37,8 +37,7 @@
             </font>
          </TextField>
          <Button fx:id="startGame" layoutX="20.0" layoutY="115.0" mnemonicParsing="false"
-            prefHeight="44.0" prefWidth="156.0" styleClass="btn"
-         >
+            prefHeight="44.0" prefWidth="156.0" styleClass="btn">
             <font>
                <Font name="Arial Black" size="13.0" />
             </font>
@@ -241,6 +240,7 @@
                   </children>
                   <styleClass>
                      <String fx:value="tile" />
+
                      <String fx:value="tile-active" />
                   </styleClass>
                </HBox>

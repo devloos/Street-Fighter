@@ -18,7 +18,6 @@ import edu.st.client.services.FxService;
 import edu.st.common.Util;
 import edu.st.common.messages.Message;
 import edu.st.common.messages.Packet;
-import edu.st.common.messages.Received;
 import edu.st.common.messages.Subscribe;
 import edu.st.common.messages.client.CreateGame;
 import edu.st.common.messages.client.JoinGame;
@@ -57,7 +56,7 @@ public class OnlineLobbyController extends BaseController {
       CreateGame message = new CreateGame(username.getText());
       Util.println(socket, message, "/creategame");
 
-      FxService.switchViews("views/WaitingRoom.fxml", this);
+      FxService.switchViews("views/WaitingRoom.fxml", null);
     });
 
     Thread thread = new Thread(
@@ -79,14 +78,6 @@ public class OnlineLobbyController extends BaseController {
               }
 
               Message message = packet.getMessage();
-
-              if (message.getType().contains("Received")) {
-                Received msg = (Received) message;
-
-                if (!msg.isSuccess()) {
-                  continue;
-                }
-              }
 
               if (message.getType().contains("GameList")) {
                 GameList gameListMsg = (GameList) message;
@@ -119,7 +110,7 @@ public class OnlineLobbyController extends BaseController {
       hbox.setAlignment(Pos.CENTER);
       hbox.setSpacing(90);
 
-      Label gameNameLabel = new Label("Game ID: " + game.getGameId());
+      Label gameNameLabel = new Label("Game ID: " + game.getGameId().toString().substring(24));
       gameNameLabel.getStyleClass().add("label");
       hbox.getChildren().add(gameNameLabel);
 
@@ -143,16 +134,11 @@ public class OnlineLobbyController extends BaseController {
     }
   }
 
-  public void gameStarted(String playerUsername, UUID gameId, boolean isHost) {
-    String host = isHost ? username.getText() : playerUsername;
-    String user = !isHost ? username.getText() : playerUsername;
+  public void gameStarted(String playerUsername, UUID gameId, boolean imHost) {
+    String host = imHost ? username.getText() : playerUsername;
+    String user = imHost ? playerUsername : username.getText();
     FxService.switchViews("views/AvatarPicker.fxml",
-        new OnlineAvatarController(host, user, socket, gameId, isHost));
-    // FxService.switchViews("views/Game.fxml",
-    // new OnlineGameController(new
-    // Player(Main.class.getResource("images/avatars/Balrog.jpg"), host),
-    // new Player(Main.class.getResource("images/avatars/Bison.jpg"), user), socket,
-    // gameId));
+        new OnlineAvatarController(host, user, socket, gameId, imHost));
   }
 
   private Socket socket = null;

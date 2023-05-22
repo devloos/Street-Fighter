@@ -6,10 +6,12 @@ import edu.st.common.Util;
 import edu.st.common.messages.Message;
 import edu.st.common.messages.Packet;
 import edu.st.common.messages.client.PlayerAvatarChange;
+import edu.st.common.messages.client.PlayerReady;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,7 +34,8 @@ public class OnlineAvatarController extends BaseController {
   public Button startGame = null;
   public HBox p1 = null;
   public HBox p2 = null;
-  private HBox previousP1 = null;
+  public GridPane grid = null;
+  public HBox previousP1 = null;
   public ImageView p2StartImage = null;
 
   public OnlineAvatarController(String hostname, String playername, Socket socket, UUID gameId, boolean imHost) {
@@ -61,7 +64,7 @@ public class OnlineAvatarController extends BaseController {
           try {
             BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            while (flag) {
+            while (true) {
               String m = input.readLine();
 
               if (m == null) {
@@ -90,6 +93,14 @@ public class OnlineAvatarController extends BaseController {
 
                   p2StartImage.setImage(new Image(avatarSelected.toString()));
                 });
+              }
+
+              if (message.getType().contains("GameStarted")) {
+                Platform.runLater(() -> {
+                  FxService.switchViews("views/Game.fxml", new OnlineGameController(host, player, socket, gameId));
+                });
+
+                break;
               }
             }
           } catch (IOException e) {
@@ -127,19 +138,26 @@ public class OnlineAvatarController extends BaseController {
     String avatarStr = tile.getId();
     URL avatarPath = Main.class.getResource("images/avatars/" + avatarStr +
         ".jpg");
-    player.setAvatarPath(avatarPath);
+
+    if (imHost) {
+      host.setAvatarPath(avatarPath);
+    } else {
+      player.setAvatarPath(avatarPath);
+    }
 
     Util.println(socket, new PlayerAvatarChange(avatarStr), gameId.toString());
   }
 
   public void readyUp() {
+    grid.setDisable(true);
+    startGame.setDisable(true);
 
+    Util.println(socket, new PlayerReady(), gameId.toString());
   }
 
   private Player host = null;
   private Player player = null;
   private Socket socket = null;
   private UUID gameId = null;
-  private boolean flag = true;
   private boolean imHost;
 }
