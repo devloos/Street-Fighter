@@ -91,17 +91,13 @@ public class MultiplayerGameController extends BaseController {
 
   private boolean isGameOver(Player player) {
     if (Util.isWinner(board)) {
-      GameService.addTask(GameService.DELAY, () -> {
-        GameService.setPlayerProfile(win, player);
-        overlay.setVisible(true);
-        win.setVisible(true);
-      });
+      GameService.setPlayerProfile(win, player);
+      overlay.setVisible(true);
+      win.setVisible(true);
       return true;
     } else if (Util.isBoardFull(board)) {
-      GameService.addTask(GameService.DELAY, () -> {
-        overlay.setVisible(true);
-        tie.setVisible(true);
-      });
+      overlay.setVisible(true);
+      tie.setVisible(true);
       return true;
     }
 

@@ -33,8 +33,8 @@ public class SingleGameController extends BaseController {
     this.cpu = cpu;
     this.mode = mode;
     GameService.initBoard(board);
-    // FxService.setMedia("audio/vs.mp3");
-    // FxService.playMedia();
+    FxService.setMedia("audio/vs.mp3");
+    FxService.playMedia();
   }
 
   @FXML

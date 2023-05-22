@@ -12,8 +12,6 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 public class Main extends Application {
-  public static final String FXML_FILE = "views/Login.fxml";
-
   @Override
   public void start(Stage window) throws Exception {
     window.setTitle("Tic Tac Toe");
@@ -27,7 +25,7 @@ public class Main extends Application {
       }
     });
 
-    FXMLLoader loader = new FXMLLoader(Main.class.getResource(FXML_FILE));
+    FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/Login.fxml"));
 
     try {
       AnchorPane pane = loader.<AnchorPane>load();

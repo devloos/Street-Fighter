@@ -15,6 +15,7 @@ import java.util.UUID;
 
 import edu.st.client.controllers.BaseController;
 import edu.st.client.services.FxService;
+import edu.st.client.services.GameService;
 import edu.st.common.Util;
 import edu.st.common.messages.Message;
 import edu.st.common.messages.Packet;
@@ -42,7 +43,10 @@ public class OnlineLobbyController extends BaseController {
       Subscribe subscribe = new Subscribe(channels);
       Util.println(socket, subscribe, this.socket.toString());
     } catch (IOException e) {
-      e.printStackTrace();
+      System.out.println("Connection refused check server or internet.");
+      GameService.addTask(1000, () -> {
+        FxService.switchViews("views/Login.fxml", null);
+      });
     }
   };
 
@@ -62,6 +66,10 @@ public class OnlineLobbyController extends BaseController {
     Thread thread = new Thread(
         () -> {
           try {
+            if (socket == null) {
+              return;
+            }
+
             BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
             while (true) {
