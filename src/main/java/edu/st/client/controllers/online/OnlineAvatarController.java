@@ -86,10 +86,7 @@ public class OnlineAvatarController extends BaseController {
 
                   URL avatarSelected = Main.class.getResource("images/avatars/" + msg.getAvatarSelected() + ".jpg");
 
-                  if (grid.lookup("#" + msg.getPrevAvatar()) != null) {
-                    grid.lookup("#" + msg.getAvatarSelected()).setOpacity(0.6);
-                  }
-
+                  grid.lookup("#" + msg.getAvatarSelected()).setOpacity(0.6);
                   grid.lookup("#" + msg.getAvatarSelected()).setDisable(true);
                   if (msg.getPrevAvatar() != null) {
                     grid.lookup("#" + msg.getPrevAvatar()).setDisable(false);
