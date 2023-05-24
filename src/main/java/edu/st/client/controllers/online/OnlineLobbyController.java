@@ -151,6 +151,5 @@ public class OnlineLobbyController extends BaseController {
 
   private Socket socket = null;
   public static final int port = 8000;
-  // public static final String host = "localhost";
-  public static final String host = "70.181.109.2";
+  public static final String host = "localhost";
 }
