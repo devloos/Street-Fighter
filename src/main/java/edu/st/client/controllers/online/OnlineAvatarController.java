@@ -58,6 +58,7 @@ public class OnlineAvatarController extends BaseController {
       readyUp();
     });
     startGame.setText("Ready up!");
+    startGame.setDisable(true);
 
     Thread thread = new Thread(
         () -> {
@@ -85,9 +86,14 @@ public class OnlineAvatarController extends BaseController {
 
                   URL avatarSelected = Main.class.getResource("images/avatars/" + msg.getAvatarSelected() + ".jpg");
 
+                  if (grid.lookup("#" + msg.getPrevAvatar()) != null) {
+                    grid.lookup("#" + msg.getAvatarSelected()).setOpacity(0.6);
+                  }
+
                   grid.lookup("#" + msg.getAvatarSelected()).setDisable(true);
                   if (msg.getPrevAvatar() != null) {
                     grid.lookup("#" + msg.getPrevAvatar()).setDisable(false);
+                    grid.lookup("#" + msg.getPrevAvatar()).setOpacity(1);
                   }
 
                   if (imHost) {
@@ -125,6 +131,10 @@ public class OnlineAvatarController extends BaseController {
     }
 
     HBox tile = (HBox) node.getParent();
+
+    if (!tile.isDisable()) {
+      startGame.setDisable(false);
+    }
 
     ImageView image = (ImageView) p1.getChildren().get(0);
 
