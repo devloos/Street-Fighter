@@ -1,5 +1,7 @@
 ## Demo
 
+https://github.com/devloos/Street-Fighter/assets/58356571/8a1a73fd-4ad2-45d9-ae42-9db0d1c4a66a
+
 ## Setup
 
 **Install Maven**
