@@ -1,7 +1,6 @@
 package edu.st.client;
 
 import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -25,7 +24,8 @@ public class Main extends Application {
       }
     });
 
-    FXMLLoader loader = new FXMLLoader(Main.class.getResource("views/Login.fxml"));
+    FXMLLoader loader =
+        new FXMLLoader(Main.class.getResource("views/Login.fxml"));
 
     try {
       AnchorPane pane = loader.<AnchorPane>load();
@@ -37,7 +37,5 @@ public class Main extends Application {
     }
   }
 
-  public static void main(String[] args) {
-    Application.launch(args);
-  }
+  public static void main(String[] args) { Application.launch(args); }
 }
