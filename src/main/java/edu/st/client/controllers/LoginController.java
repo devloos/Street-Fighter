@@ -1,15 +1,14 @@
 package edu.st.client.controllers;
 
-import java.util.ArrayList;
-
 import edu.st.client.controllers.single.SingleAvatarController;
 import edu.st.client.services.FxService;
 import edu.st.client.services.LoginService;
+import java.util.ArrayList;
 import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 public class LoginController extends BaseController {
   // all fxml properties
@@ -32,21 +31,19 @@ public class LoginController extends BaseController {
   public void initialize() {
     background_image.setImage(LoginService.getRandomBackground(backgrounds));
 
-    return_btn.setOnAction(event -> {
-      overlay.setVisible(false);
-    });
+    return_btn.setOnAction(event -> { overlay.setVisible(false); });
 
     single_player_btn.setOnAction(event -> {
-      FxService.switchViews("views/AvatarPicker.fxml", new SingleAvatarController());
+      FxService.switchViews("views/AvatarPicker.fxml",
+                            new SingleAvatarController());
     });
 
     multiplayer_btn.setOnAction(event -> {
       FxService.switchViews("views/MultiplayerAvatarPicker.fxml", null);
     });
 
-    online_btn.setOnAction(event -> {
-      FxService.switchViews("views/OnlineLobby.fxml", null);
-    });
+    online_btn.setOnAction(
+        event -> { FxService.switchViews("views/OnlineLobby.fxml", null); });
   }
 
   private ArrayList<Image> backgrounds = null;

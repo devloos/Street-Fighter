@@ -1,9 +1,8 @@
 package edu.st.client.services;
 
-import java.io.IOException;
-
 import edu.st.client.Main;
 import edu.st.client.controllers.BaseController;
+import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
@@ -20,7 +19,7 @@ public class FxService {
       if (controller != null) {
         loader.setController(controller);
       }
-      Stage stage = (Stage) Window.getWindows().get(0);
+      Stage stage = (Stage)Window.getWindows().get(0);
       AnchorPane pane = loader.<AnchorPane>load();
       stage.getScene().setRoot(pane);
     } catch (IOException e) {
@@ -33,21 +32,19 @@ public class FxService {
       mediaPlayer.stop();
     }
 
-    mediaPlayer = new MediaPlayer(new Media(Main.class.getResource(mediaPath).toString()));
+    mediaPlayer = new MediaPlayer(
+        new Media(Main.class.getResource(mediaPath).toString()));
     mediaPlayer.setOnEndOfMedia(() -> {
-      mediaPlayer.seek(Duration.ZERO); // reset playback position to the beginning
+      mediaPlayer.seek(
+          Duration.ZERO); // reset playback position to the beginning
       mediaPlayer.play(); // start playing from the beginning
     });
     mediaPlayer.setVolume(0.1);
   }
 
-  public static void playMedia() {
-    // mediaPlayer.play();
-  }
+  public static void playMedia() { mediaPlayer.play(); }
 
-  public static void stopMedia() {
-    mediaPlayer.stop();
-  }
+  public static void stopMedia() { mediaPlayer.stop(); }
 
   private static MediaPlayer mediaPlayer = null;
 }
