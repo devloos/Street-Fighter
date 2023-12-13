@@ -1,0 +1,3 @@
+[submodule "Street-Fighter-Server"]
+	path = Street-Fighter-Server
+	url = git@github.com:devloos/Street-Fighter-Server.git
