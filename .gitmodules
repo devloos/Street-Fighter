@@ -1,6 +1,0 @@
-[submodule "Street-Fighter-Server"]
-	path = Street-Fighter-Server
-	url = git@github.com:devloos/Street-Fighter-Server.git
-[submodule "Street-Fighter-Common"]
-	path = Street-Fighter-Common
-	url = git@github.com:devloos/Street-Fighter-Common.git
